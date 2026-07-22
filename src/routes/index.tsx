@@ -164,14 +164,14 @@ function Nav() {
   return (
     <nav style={{
       position: "fixed", top: 0, left: 0, right: 0, height: 68, zIndex: 200,
-      background: scrolled ? "rgba(235,235,234,0.92)" : "transparent",
+      background: scrolled ? "rgba(10,10,10,0.72)" : "transparent",
       backdropFilter: scrolled ? "blur(16px)" : "none",
       WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
-      borderBottom: scrolled ? "1px solid rgba(0,0,0,0.07)" : "1px solid transparent",
+      borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "1px solid transparent",
       transition: "all 0.3s ease",
     }}>
       <div className="flex items-center justify-between h-full px-6 md:px-14">
-        <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 13, letterSpacing: "0.22em", color: scrolled ? "#1C1C1C" : "#FFFFFF" }}>
+        <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 13, letterSpacing: "0.22em", color: "#FFFFFF" }}>
           THÉO LEGUERRIER
         </div>
         <a href={CHECKOUT} style={{
