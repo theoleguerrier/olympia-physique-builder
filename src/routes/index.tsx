@@ -385,20 +385,21 @@ function CTAButton({ label = "Je démarre ma transformation", dark }: { label?: 
 
 function Mindset() {
   return (
-    <section style={{ background: "#EBEBEA", padding: "140px 24px", position: "relative", overflow: "hidden" }}>
-      <Watermark text="MASSE" size="22vw" />
+    <section style={{ background: "#0A0A0A", padding: "140px 24px", position: "relative", overflow: "hidden" }}>
+      <Watermark text="MASSE" size="22vw" color="rgba(255,255,255,0.028)" />
+      <Blobs dark />
       <div style={{ maxWidth: 960, margin: "0 auto", position: "relative" }}>
         <Reveal>
-          <h2 style={{ ...bebas, fontSize: "clamp(56px,7vw,96px)", lineHeight: 1, color: "#1C1C1C", margin: 0 }}>
-            CE N'EST PAS JUSTE UN <span style={{ ...serif, color: "#6A6A6A" }}>programme.</span><br />
+          <h2 style={{ ...bebas, fontSize: "clamp(56px,7vw,96px)", lineHeight: 1, color: "#fff", margin: 0 }}>
+            CE N'EST PAS JUSTE UN <span style={{ ...serif, color: COPPER }}>programme.</span><br />
             C'EST UNE TRANSFORMATION.
           </h2>
         </Reveal>
         <Reveal delay={150}>
-          <div style={{ maxWidth: 560, marginTop: 48, fontSize: 16, lineHeight: 1.85, color: "#6A6A6A", fontWeight: 300 }}>
+          <div style={{ maxWidth: 560, marginTop: 48, fontSize: 16, lineHeight: 1.85, color: "rgba(255,255,255,0.6)", fontWeight: 300 }}>
             <p>Je te partage ma méthode. Le savoir que j'ai engrangé sur 15 ans de compétition professionnelle — condensé dans un seul programme pour que tu prennes du muscle, développes ton meilleur physique, et adoptes le mental d'un champion.</p>
             <p style={{ marginTop: 20 }}>Parce qu'un physique transformé, ça ne s'arrête pas au miroir. Ça change la perception que tu as de toi-même. Ta confiance. La façon dont les autres te regardent.</p>
-            <p style={{ marginTop: 28, fontWeight: 600, color: "#1C1C1C" }}>Booste ton physique. Booste ton mental. Élève tes standards.</p>
+            <p style={{ marginTop: 28, fontWeight: 600, color: "#fff" }}>Booste ton physique. Booste ton mental. Élève tes standards.</p>
           </div>
         </Reveal>
       </div>
@@ -414,11 +415,11 @@ function Problem() {
     ["04", "Tu gères ton alimentation au feeling.", "Pas d'excédent calorique structuré, macros approximatifs, récupération bâclée. L'entraînement ne fait que 30% du travail."],
   ];
   return (
-    <section style={{ background: "#fff", padding: "140px 24px" }}>
+    <section style={{ background: "#0F0F0F", padding: "140px 24px", position: "relative", overflow: "hidden" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <Reveal><Eyebrow>Le constat</Eyebrow></Reveal>
         <Reveal delay={80}>
-          <h2 style={{ ...bebas, fontSize: "clamp(44px,5.5vw,80px)", lineHeight: 1, color: "#1C1C1C", margin: 0, maxWidth: 1000 }}>
+          <h2 style={{ ...bebas, fontSize: "clamp(44px,5.5vw,80px)", lineHeight: 1, color: "#fff", margin: 0, maxWidth: 1000 }}>
             TU T'ENTRAÎNES. MAIS TON PHYSIQUE NE REFLÈTE PAS LES EFFORTS QUE TU PRODUIS.
           </h2>
         </Reveal>
@@ -426,14 +427,14 @@ function Problem() {
           {cards.map(([n, t, b], i) => (
             <Reveal key={n} delay={i * 100}>
               <div style={{
-                background: "#fff", border: "1px solid rgba(0,0,0,0.07)", padding: "52px 44px",
+                background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", padding: "52px 44px", borderRadius: 20, backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)",
                 position: "relative", overflow: "hidden", transition: "all 0.4s", height: "100%",
-              }} onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-6px)"; e.currentTarget.style.boxShadow = "0 20px 60px rgba(192,139,92,0.10)"; }}
-                 onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
+              }} onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-6px)"; e.currentTarget.style.background = "rgba(255,255,255,0.055)"; e.currentTarget.style.boxShadow = "0 20px 60px rgba(192,139,92,0.15)"; }}
+                 onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.background = "rgba(255,255,255,0.03)"; e.currentTarget.style.boxShadow = "none"; }}
                  data-cursor>
-                <div aria-hidden style={{ position: "absolute", top: -30, right: -10, ...bebas, fontSize: 160, color: "rgba(0,0,0,0.03)", lineHeight: 0.8 }}>{n}</div>
-                <div style={{ fontSize: 18, fontWeight: 600, color: "#1C1C1C", position: "relative" }}>{t}</div>
-                <div style={{ fontSize: 14, color: "#6A6A6A", fontWeight: 300, lineHeight: 1.85, marginTop: 20, position: "relative" }}>{b}</div>
+                <div aria-hidden style={{ position: "absolute", top: -30, right: -10, ...bebas, fontSize: 160, color: "rgba(255,255,255,0.04)", lineHeight: 0.8 }}>{n}</div>
+                <div style={{ fontSize: 18, fontWeight: 600, color: "#fff", position: "relative" }}>{t}</div>
+                <div style={{ fontSize: 14, color: "rgba(255,255,255,0.55)", fontWeight: 300, lineHeight: 1.85, marginTop: 20, position: "relative" }}>{b}</div>
               </div>
             </Reveal>
           ))}
