@@ -164,14 +164,14 @@ function Nav() {
   return (
     <nav style={{
       position: "fixed", top: 0, left: 0, right: 0, height: 68, zIndex: 200,
-      background: scrolled ? "rgba(235,235,234,0.92)" : "transparent",
+      background: scrolled ? "rgba(10,10,10,0.72)" : "transparent",
       backdropFilter: scrolled ? "blur(16px)" : "none",
       WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
-      borderBottom: scrolled ? "1px solid rgba(0,0,0,0.07)" : "1px solid transparent",
+      borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "1px solid transparent",
       transition: "all 0.3s ease",
     }}>
       <div className="flex items-center justify-between h-full px-6 md:px-14">
-        <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 13, letterSpacing: "0.22em", color: scrolled ? "#1C1C1C" : "#FFFFFF" }}>
+        <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 13, letterSpacing: "0.22em", color: "#FFFFFF" }}>
           THÉO LEGUERRIER
         </div>
         <a href={CHECKOUT} style={{
@@ -188,81 +188,100 @@ function Nav() {
 
 /* ---------- Hero ---------- */
 function Hero() {
-  const bgRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const on = (e: MouseEvent) => {
-      if (!bgRef.current) return;
-      const x = (e.clientX / window.innerWidth - 0.5) * 14;
-      const y = (e.clientY / window.innerHeight - 0.5) * 14;
-      bgRef.current.style.transform = `translate3d(${x}px,${y}px,0) scale(1.06)`;
-    };
-    window.addEventListener("mousemove", on);
-    return () => window.removeEventListener("mousemove", on);
-  }, []);
   return (
-    <section style={{ position: "relative", height: "100vh", minHeight: 720, overflow: "hidden", background: "#0A0A0A" }}>
-      <div ref={bgRef} style={{
-        position: "absolute", inset: -20, backgroundImage: `url(${heroTheo})`,
-        backgroundSize: "cover", backgroundPosition: "center 20%",
-        transition: "transform 0.1s ease-out", willChange: "transform",
-      }} />
-      <div style={{
-        position: "absolute", inset: 0, background:
-          "linear-gradient(105deg, rgba(8,8,8,0.82) 0%, rgba(8,8,8,0.55) 45%, rgba(8,8,8,0.20) 100%), linear-gradient(to top, rgba(8,8,8,0.75), transparent 55%)",
-      }} />
-      <motion.div aria-hidden animate={{ opacity: [0.7, 1, 0.7] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+    <section style={{ position: "relative", minHeight: "100vh", overflow: "hidden", background: "#0A0A0A" }}>
+      {/* Ambient glow */}
+      <motion.div aria-hidden animate={{ opacity: [0.55, 0.9, 0.55] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         style={{
-          position: "absolute", inset: 0, background:
-            "radial-gradient(ellipse 55% 70% at 18% 75%, rgba(192,139,92,0.22), transparent 55%), radial-gradient(ellipse 30% 40% at 65% 25%, rgba(255,220,160,0.06), transparent 50%)",
+          position: "absolute", inset: 0, pointerEvents: "none", background:
+            "radial-gradient(ellipse 45% 60% at 12% 70%, rgba(192,139,92,0.22), transparent 60%), radial-gradient(ellipse 40% 50% at 85% 20%, rgba(192,139,92,0.10), transparent 55%)",
         }} />
+
+      {/* Watermark type derrière */}
       <div aria-hidden style={{
-        position: "absolute", bottom: -40, right: -20, fontFamily: "'Bebas Neue', sans-serif",
-        fontSize: "32vw", lineHeight: 0.8, color: "rgba(255,255,255,0.03)", pointerEvents: "none",
-      }}>MASSE</div>
+        position: "absolute", bottom: -60, left: -20, right: -20, fontFamily: "'Bebas Neue', sans-serif",
+        fontSize: "26vw", lineHeight: 0.8, color: "rgba(255,255,255,0.035)", pointerEvents: "none",
+        textAlign: "center", zIndex: 1, whiteSpace: "nowrap",
+      }}>OBJECTIF MASSE</div>
 
-      {/* Floating cards - desktop only */}
-      <div className="hidden lg:block">
-        {[
-          { top: 140, val: "TOP 15", label: "MR. OLYMPIA" },
-          { top: 300, val: "15 ANS", label: "DE COMPÉTITION PRO" },
-          { top: 460, val: "12", label: "SEMAINES · PROGRAMME" },
-        ].map((c, i) => (
-          <motion.div key={i} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.8 + i * 0.15, duration: 0.7 }}
-            style={{
-              position: "absolute", top: c.top, right: 56,
-              background: "rgba(255,255,255,0.08)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
-              border: "1px solid rgba(255,255,255,0.13)", boxShadow: "0 8px 48px rgba(0,0,0,0.25)",
-              padding: "22px 28px", minWidth: 220,
-            }}>
-            <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 40, color: "#fff", lineHeight: 1 }}>{c.val}</div>
-            <div style={{ fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginTop: 6 }}>{c.label}</div>
-          </motion.div>
-        ))}
-      </div>
-
-      <div style={{ position: "absolute", bottom: 72, left: "clamp(24px, 5vw, 56px)", right: 24, zIndex: 5 }}>
-        <div style={{ fontSize: 10, letterSpacing: "0.35em", textTransform: "uppercase", color: COPPER, marginBottom: 24 }}>
-          IFBB PRO · TOP 15 MR. OLYMPIA · 15 ANS DE COMPÉTITION
-        </div>
-        <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(80px,14vw,180px)", lineHeight: 0.88, margin: 0 }}>
-          <div style={{ color: "rgba(255,255,255,0.12)" }}><WordSplit text="OBJECTIF" delayBase={0.15} /></div>
-          <div style={{ color: "#fff" }}><WordSplit text="MASSE." delayBase={0.35} /></div>
-        </h1>
-        <p style={{ fontSize: 16, fontWeight: 300, color: "rgba(255,255,255,0.55)", maxWidth: 400, marginTop: 28 }}>
-          12 semaines pour prendre de la masse et atteindre ton meilleur physique.
-        </p>
-        <div style={{ marginTop: 36, display: "flex", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
-          <a href={CHECKOUT} style={{
-            background: COPPER, color: "#fff", padding: "16px 44px", fontSize: 11, fontWeight: 600,
-            letterSpacing: "0.15em", textTransform: "uppercase", display: "inline-block", transition: "all 0.25s",
-          }} onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.filter = "brightness(0.9)"; }}
-             onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.filter = "brightness(1)"; }}>
-            Je démarre ma transformation
-          </a>
-          <div style={{ fontSize: 13, color: "rgba(255,255,255,0.35)" }}>
-            <span style={{ textDecoration: "line-through" }}>199€</span> · 149€
+      <div className="grid grid-cols-1 lg:grid-cols-12" style={{ position: "relative", zIndex: 2, minHeight: "100vh" }}>
+        {/* LEFT — texte */}
+        <div className="lg:col-span-7" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "120px clamp(24px,5vw,72px) 60px" }}>
+          <div>
+            <div style={{ fontSize: 10, letterSpacing: "0.35em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: 8 }}>
+              — Since 2010 · IFBB Pro
+            </div>
           </div>
+          <div>
+            <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(64px,10vw,168px)", lineHeight: 0.86, margin: 0, color: "#fff" }}>
+              <div><WordSplit text="OBJECTIF" delayBase={0.15} /></div>
+              <div>
+                <span style={{ ...serif, color: COPPER, fontSize: "1.02em" }}>
+                  <WordSplit text="Masse." delayBase={0.35} />
+                </span>
+              </div>
+            </h1>
+            <p style={{ fontSize: 16, fontWeight: 300, color: "rgba(255,255,255,0.55)", maxWidth: 440, marginTop: 32, lineHeight: 1.6 }}>
+              12 semaines pour prendre de la masse et atteindre ton meilleur physique. La méthode d'un athlète Top 15 Mr. Olympia — condensée pour toi.
+            </p>
+            <div style={{ marginTop: 40, display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
+              <a href={CHECKOUT} style={{
+                background: COPPER, color: "#fff", padding: "18px 40px", fontSize: 11, fontWeight: 600,
+                letterSpacing: "0.18em", textTransform: "uppercase", display: "inline-flex", alignItems: "center", gap: 12,
+                borderRadius: 999, transition: "all 0.25s",
+              }} onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.filter = "brightness(0.92)"; }}
+                 onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.filter = "brightness(1)"; }}>
+                Je démarre <span style={{ opacity: 0.6 }}>·</span> 149€
+              </a>
+              <a href="#pricing" style={{
+                background: "rgba(255,255,255,0.06)", color: "#fff", padding: "18px 32px", fontSize: 11, fontWeight: 600,
+                letterSpacing: "0.18em", textTransform: "uppercase", borderRadius: 999,
+                border: "1px solid rgba(255,255,255,0.12)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)",
+              }}>Voir le programme →</a>
+            </div>
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 20, marginTop: 60, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)" }}>
+            <span>· 15 ans de compétition pro</span>
+            <span className="hidden md:inline">· Top 15 Mr. Olympia</span>
+            <span className="hidden md:inline">· Scroll ↓</span>
+          </div>
+        </div>
+
+        {/* RIGHT — photo pleine hauteur + carte glass produit */}
+        <div className="lg:col-span-5" style={{ position: "relative", minHeight: 480 }}>
+          <div style={{
+            position: "absolute", inset: 0, backgroundImage: `url(${heroTheo})`,
+            backgroundSize: "cover", backgroundPosition: "center 20%",
+          }} />
+          <div style={{
+            position: "absolute", inset: 0,
+            background: "linear-gradient(to left, transparent 40%, rgba(10,10,10,0.85) 100%), linear-gradient(to top, rgba(10,10,10,0.6), transparent 40%)",
+          }} />
+          {/* Badge Out Now */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9, duration: 0.7 }}
+            className="hidden md:block"
+            style={{
+              position: "absolute", top: 120, right: 32, zIndex: 3,
+              background: "rgba(255,255,255,0.08)", backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)",
+              border: "1px solid rgba(255,255,255,0.14)", borderRadius: 20, padding: 20, width: 240,
+              boxShadow: "0 20px 60px rgba(0,0,0,0.4)",
+            }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
+              <span style={{ fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>Out Now</span>
+              <span style={{ fontSize: 10, letterSpacing: "0.15em", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.2)", padding: "3px 10px", borderRadius: 999 }}>2026</span>
+            </div>
+            <div style={{ ...bebas, fontSize: 28, color: "#fff", lineHeight: 1 }}>Objectif Masse<span style={{ color: COPPER }}>®</span></div>
+            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", marginTop: 6 }}>12 semaines · 4 phases · 50+ vidéos</div>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 16, paddingTop: 16, borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+              <div>
+                <div style={{ fontSize: 10, color: "rgba(255,255,255,0.35)", textDecoration: "line-through" }}>199€</div>
+                <div style={{ ...bebas, fontSize: 22, color: "#fff", lineHeight: 1 }}>149€</div>
+              </div>
+              <a href={CHECKOUT} aria-label="Commander" style={{
+                width: 42, height: 42, borderRadius: "50%", background: COPPER, display: "grid", placeItems: "center", color: "#fff", fontSize: 18,
+              }}>↗</a>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -300,15 +319,15 @@ function Stats() {
     { v: "TOUS", l: "NIVEAUX" },
   ];
   return (
-    <section style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
+    <section style={{ background: "#0F0F0F", borderTop: "1px solid rgba(255,255,255,0.05)", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
       <div className="grid grid-cols-2 md:grid-cols-5">
         {items.map((s, i) => (
           <div key={i} style={{
             padding: "52px 20px", textAlign: "center",
-            borderRight: i < items.length - 1 ? "1px solid rgba(0,0,0,0.07)" : "none",
+            borderRight: i < items.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none",
           }} className={i >= 3 ? "md:border-r" : ""}>
-            <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 52, color: "#0A0A0A", lineHeight: 1 }}>{s.v}</div>
-            <div style={{ fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "#6A6A6A", marginTop: 6 }}>{s.l}</div>
+            <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 52, color: "#fff", lineHeight: 1 }}>{s.v}</div>
+            <div style={{ fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginTop: 6 }}>{s.l}</div>
           </div>
         ))}
       </div>
@@ -366,20 +385,21 @@ function CTAButton({ label = "Je démarre ma transformation", dark }: { label?: 
 
 function Mindset() {
   return (
-    <section style={{ background: "#EBEBEA", padding: "140px 24px", position: "relative", overflow: "hidden" }}>
-      <Watermark text="MASSE" size="22vw" />
+    <section style={{ background: "#0A0A0A", padding: "140px 24px", position: "relative", overflow: "hidden" }}>
+      <Watermark text="MASSE" size="22vw" color="rgba(255,255,255,0.028)" />
+      <Blobs dark />
       <div style={{ maxWidth: 960, margin: "0 auto", position: "relative" }}>
         <Reveal>
-          <h2 style={{ ...bebas, fontSize: "clamp(56px,7vw,96px)", lineHeight: 1, color: "#1C1C1C", margin: 0 }}>
-            CE N'EST PAS JUSTE UN <span style={{ ...serif, color: "#6A6A6A" }}>programme.</span><br />
+          <h2 style={{ ...bebas, fontSize: "clamp(56px,7vw,96px)", lineHeight: 1, color: "#fff", margin: 0 }}>
+            CE N'EST PAS JUSTE UN <span style={{ ...serif, color: COPPER }}>programme.</span><br />
             C'EST UNE TRANSFORMATION.
           </h2>
         </Reveal>
         <Reveal delay={150}>
-          <div style={{ maxWidth: 560, marginTop: 48, fontSize: 16, lineHeight: 1.85, color: "#6A6A6A", fontWeight: 300 }}>
+          <div style={{ maxWidth: 560, marginTop: 48, fontSize: 16, lineHeight: 1.85, color: "rgba(255,255,255,0.6)", fontWeight: 300 }}>
             <p>Je te partage ma méthode. Le savoir que j'ai engrangé sur 15 ans de compétition professionnelle — condensé dans un seul programme pour que tu prennes du muscle, développes ton meilleur physique, et adoptes le mental d'un champion.</p>
             <p style={{ marginTop: 20 }}>Parce qu'un physique transformé, ça ne s'arrête pas au miroir. Ça change la perception que tu as de toi-même. Ta confiance. La façon dont les autres te regardent.</p>
-            <p style={{ marginTop: 28, fontWeight: 600, color: "#1C1C1C" }}>Booste ton physique. Booste ton mental. Élève tes standards.</p>
+            <p style={{ marginTop: 28, fontWeight: 600, color: "#fff" }}>Booste ton physique. Booste ton mental. Élève tes standards.</p>
           </div>
         </Reveal>
       </div>
@@ -395,11 +415,11 @@ function Problem() {
     ["04", "Tu gères ton alimentation au feeling.", "Pas d'excédent calorique structuré, macros approximatifs, récupération bâclée. L'entraînement ne fait que 30% du travail."],
   ];
   return (
-    <section style={{ background: "#fff", padding: "140px 24px" }}>
+    <section style={{ background: "#0F0F0F", padding: "140px 24px", position: "relative", overflow: "hidden" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <Reveal><Eyebrow>Le constat</Eyebrow></Reveal>
         <Reveal delay={80}>
-          <h2 style={{ ...bebas, fontSize: "clamp(44px,5.5vw,80px)", lineHeight: 1, color: "#1C1C1C", margin: 0, maxWidth: 1000 }}>
+          <h2 style={{ ...bebas, fontSize: "clamp(44px,5.5vw,80px)", lineHeight: 1, color: "#fff", margin: 0, maxWidth: 1000 }}>
             TU T'ENTRAÎNES. MAIS TON PHYSIQUE NE REFLÈTE PAS LES EFFORTS QUE TU PRODUIS.
           </h2>
         </Reveal>
@@ -407,14 +427,14 @@ function Problem() {
           {cards.map(([n, t, b], i) => (
             <Reveal key={n} delay={i * 100}>
               <div style={{
-                background: "#fff", border: "1px solid rgba(0,0,0,0.07)", padding: "52px 44px",
+                background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.08)", padding: "52px 44px", borderRadius: 20, backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)",
                 position: "relative", overflow: "hidden", transition: "all 0.4s", height: "100%",
-              }} onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-6px)"; e.currentTarget.style.boxShadow = "0 20px 60px rgba(192,139,92,0.10)"; }}
-                 onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
+              }} onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-6px)"; e.currentTarget.style.background = "rgba(255,255,255,0.055)"; e.currentTarget.style.boxShadow = "0 20px 60px rgba(192,139,92,0.15)"; }}
+                 onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.background = "rgba(255,255,255,0.03)"; e.currentTarget.style.boxShadow = "none"; }}
                  data-cursor>
-                <div aria-hidden style={{ position: "absolute", top: -30, right: -10, ...bebas, fontSize: 160, color: "rgba(0,0,0,0.03)", lineHeight: 0.8 }}>{n}</div>
-                <div style={{ fontSize: 18, fontWeight: 600, color: "#1C1C1C", position: "relative" }}>{t}</div>
-                <div style={{ fontSize: 14, color: "#6A6A6A", fontWeight: 300, lineHeight: 1.85, marginTop: 20, position: "relative" }}>{b}</div>
+                <div aria-hidden style={{ position: "absolute", top: -30, right: -10, ...bebas, fontSize: 160, color: "rgba(255,255,255,0.04)", lineHeight: 0.8 }}>{n}</div>
+                <div style={{ fontSize: 18, fontWeight: 600, color: "#fff", position: "relative" }}>{t}</div>
+                <div style={{ fontSize: 14, color: "rgba(255,255,255,0.55)", fontWeight: 300, lineHeight: 1.85, marginTop: 20, position: "relative" }}>{b}</div>
               </div>
             </Reveal>
           ))}
@@ -481,23 +501,24 @@ function TrainingBanner() {
 
 function Bio() {
   return (
-    <section style={{ background: "#EBEBEA", padding: "140px 24px" }}>
+    <section style={{ background: "#0A0A0A", padding: "140px 24px", position: "relative", overflow: "hidden" }}>
+      <Blobs dark />
       <div style={{ maxWidth: 1240, margin: "0 auto" }} className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
         <div className="lg:col-span-5" style={{ position: "relative" }}>
           <Reveal>
             <div style={{ position: "relative" }}>
-              <img src={coverOm} alt="Objectif Masse cover" style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", display: "block" }} />
+              <img src={coverOm} alt="Objectif Masse cover" style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", display: "block", borderRadius: 12 }} />
               <div className="hidden md:block" style={{
                 position: "absolute", bottom: -28, right: -36,
-                background: "rgba(255,255,255,0.72)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
-                border: "1px solid rgba(0,0,0,0.07)", padding: 24, minWidth: 220,
-                boxShadow: "0 20px 60px rgba(0,0,0,0.08)",
+                background: "rgba(255,255,255,0.06)", backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)",
+                border: "1px solid rgba(255,255,255,0.12)", padding: 24, minWidth: 220, borderRadius: 16,
+                boxShadow: "0 20px 60px rgba(0,0,0,0.4)",
               }}>
-                <div style={{ ...bebas, fontSize: 36, color: "#1C1C1C", lineHeight: 1 }}>TOP 15</div>
-                <div style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "#6A6A6A", marginTop: 4 }}>Mr. Olympia</div>
-                <div style={{ height: 1, background: "rgba(0,0,0,0.07)", margin: "16px 0" }} />
-                <div style={{ ...bebas, fontSize: 28, color: "#1C1C1C", lineHeight: 1 }}>2× PRO</div>
-                <div style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "#6A6A6A", marginTop: 4 }}>Shows 2023</div>
+                <div style={{ ...bebas, fontSize: 36, color: "#fff", lineHeight: 1 }}>TOP 15</div>
+                <div style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginTop: 4 }}>Mr. Olympia</div>
+                <div style={{ height: 1, background: "rgba(255,255,255,0.1)", margin: "16px 0" }} />
+                <div style={{ ...bebas, fontSize: 28, color: "#fff", lineHeight: 1 }}>2× PRO</div>
+                <div style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginTop: 4 }}>Shows 2023</div>
               </div>
             </div>
           </Reveal>
@@ -505,27 +526,27 @@ function Bio() {
         <div className="lg:col-span-7">
           <Reveal><Eyebrow>IFBB Pro · Top 15 Olympia</Eyebrow></Reveal>
           <Reveal delay={80}>
-            <h2 style={{ ...bebas, fontSize: "clamp(60px,6.5vw,88px)", lineHeight: 0.9, color: "#1C1C1C", margin: 0 }}>THÉO LEGUERRIER</h2>
+            <h2 style={{ ...bebas, fontSize: "clamp(60px,6.5vw,88px)", lineHeight: 0.9, color: "#fff", margin: 0 }}>THÉO <span style={{ ...serif, color: COPPER }}>Leguerrier</span></h2>
           </Reveal>
-          <div style={{ fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "#6A6A6A", marginTop: 16, marginBottom: 52 }}>
+          <div style={{ fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginTop: 16, marginBottom: 52 }}>
             IFBB PRO · TOP 15 MR. OLYMPIA
           </div>
           <Reveal delay={160}>
-            <div style={{ fontSize: 15, lineHeight: 1.9, color: "#1C1C1C", fontWeight: 300 }}>
+            <div style={{ fontSize: 15, lineHeight: 1.9, color: "rgba(255,255,255,0.75)", fontWeight: 300 }}>
               <p>J'ai dédié 15 ans de ma vie au bodybuilding et à la transformation physique.</p>
               <p style={{ marginTop: 18 }}>Chaque séance, chaque repas, chaque phase de préparation — tout est pensé, structuré, optimisé pour progresser. C'est cette obsession qui m'a amené jusqu'à Mr. Olympia, la compétition la plus sélective au monde, où je fais partie du Top 15 mondial.</p>
               <p style={{ marginTop: 18 }}>Ces 15 années m'ont permis de travailler aux côtés des meilleurs coachs et athlètes de la planète. Tester les méthodes, les protocoles, les approches — comprendre ce qui construit vraiment du muscle. Pas en théorie. Sur le terrain, sur scène devant les meilleurs juges du monde.</p>
-              <p style={{ marginTop: 18, fontWeight: 500 }}>Objectif Masse c'est le condensé de tout ça.</p>
+              <p style={{ marginTop: 18, fontWeight: 500, color: "#fff" }}>Objectif Masse c'est le condensé de tout ça.</p>
             </div>
           </Reveal>
-          <ul style={{ marginTop: 52, borderTop: "1px solid rgba(0,0,0,0.1)", listStyle: "none", padding: 0 }}>
+          <ul style={{ marginTop: 52, borderTop: "1px solid rgba(255,255,255,0.1)", listStyle: "none", padding: 0 }}>
             {[
               "15 ans de compétition professionnelle à haut niveau",
               "Top 15 Mr. Olympia — parmi les meilleurs bodybuilders du monde",
               "Échanges directs avec les meilleurs coachs et athlètes mondiaux",
               "Méthode construite, testée et affinée saison après saison",
             ].map((t, i) => (
-              <li key={i} style={{ borderBottom: "1px solid rgba(0,0,0,0.1)", padding: "18px 0", fontSize: 14, color: "#1C1C1C", display: "flex", gap: 16 }}>
+              <li key={i} style={{ borderBottom: "1px solid rgba(255,255,255,0.1)", padding: "18px 0", fontSize: 14, color: "rgba(255,255,255,0.85)", display: "flex", gap: 16 }}>
                 <span style={{ color: COPPER }}>—</span>{t}
               </li>
             ))}
@@ -572,23 +593,23 @@ function Diff() {
     ["03", "Applicable à ton niveau", "Débutant, intermédiaire, confirmé. Chaque phase est structurée pour t'emmener au niveau supérieur. Le programme s'adapte à toi."],
   ];
   return (
-    <section style={{ background: "#fff", padding: "140px 0 0" }}>
+    <section style={{ background: "#0F0F0F", padding: "140px 0 0" }}>
       <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 24px" }}>
         <Reveal><Eyebrow>La différence</Eyebrow></Reveal>
         <Reveal delay={80}>
-          <h2 style={{ ...bebas, fontSize: "clamp(52px,6vw,88px)", lineHeight: 1, color: "#1C1C1C", margin: 0 }}>CE N'EST PAS JUSTE UN PROGRAMME.</h2>
+          <h2 style={{ ...bebas, fontSize: "clamp(52px,6vw,88px)", lineHeight: 1, color: "#fff", margin: 0 }}>CE N'EST PAS JUSTE UN PROGRAMME.</h2>
         </Reveal>
       </div>
-      <div style={{ marginTop: 80, background: "rgba(0,0,0,0.07)" }} className="grid grid-cols-1 md:grid-cols-3 gap-px">
+      <div style={{ marginTop: 80, background: "rgba(255,255,255,0.06)" }} className="grid grid-cols-1 md:grid-cols-3 gap-px">
         {items.map(([n, t, b], i) => (
           <Reveal key={n} delay={i * 100}>
-            <div style={{ background: "#fff", padding: "56px 48px", position: "relative", height: "100%", transition: "all 0.35s" }}
-              onMouseEnter={(e) => { e.currentTarget.style.background = "#EBEBEA"; e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 20px 60px rgba(192,139,92,0.10)"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = "#fff"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
+            <div style={{ background: "#0F0F0F", padding: "56px 48px", position: "relative", height: "100%", transition: "all 0.35s" }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = "#151515"; e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 20px 60px rgba(192,139,92,0.15)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = "#0F0F0F"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
               data-cursor>
-              <div aria-hidden style={{ ...bebas, fontSize: 88, color: "rgba(0,0,0,0.05)", lineHeight: 0.8 }}>{n}</div>
-              <div style={{ ...bebas, fontSize: 26, color: "#1C1C1C", marginTop: 12 }}>{t}</div>
-              <div style={{ fontSize: 14, color: "#6A6A6A", fontWeight: 300, lineHeight: 1.85, marginTop: 16 }}>{b}</div>
+              <div aria-hidden style={{ ...bebas, fontSize: 88, color: "rgba(255,255,255,0.06)", lineHeight: 0.8 }}>{n}</div>
+              <div style={{ ...bebas, fontSize: 26, color: "#fff", marginTop: 12 }}>{t}</div>
+              <div style={{ fontSize: 14, color: "rgba(255,255,255,0.55)", fontWeight: 300, lineHeight: 1.85, marginTop: 16 }}>{b}</div>
             </div>
           </Reveal>
         ))}
@@ -682,15 +703,16 @@ function Content() {
     ]],
   ];
   return (
-    <section style={{ background: "#EBEBEA", padding: "140px 24px", position: "relative", overflow: "hidden" }}>
-      <Watermark text="5" size="22vw" />
+    <section style={{ background: "#0A0A0A", padding: "140px 24px", position: "relative", overflow: "hidden" }}>
+      <Watermark text="5" size="22vw" color="rgba(255,255,255,0.028)" />
+      <Blobs dark />
       <div style={{ maxWidth: 1240, margin: "0 auto", position: "relative" }}>
         <Reveal><Eyebrow>Ce que tu reçois</Eyebrow></Reveal>
         <Reveal delay={80}>
-          <h2 style={{ ...bebas, fontSize: "clamp(52px,6vw,88px)", lineHeight: 1, color: "#1C1C1C", margin: 0 }}>TOUT LE SYSTÈME. PAS JUSTE UN PLAN.</h2>
+          <h2 style={{ ...bebas, fontSize: "clamp(52px,6vw,88px)", lineHeight: 1, color: "#fff", margin: 0 }}>TOUT LE SYSTÈME. <span style={{ ...serif, color: COPPER }}>Pas juste un plan.</span></h2>
         </Reveal>
         <Reveal delay={160}>
-          <p style={{ fontSize: 14, color: "#6A6A6A", maxWidth: 600, marginTop: 24 }}>
+          <p style={{ fontSize: 14, color: "rgba(255,255,255,0.55)", maxWidth: 600, marginTop: 24 }}>
             Une méthode complète — entraînement, nutrition, mindset, récupération. Tout ce dont tu as besoin pour prendre de la masse.
           </p>
         </Reveal>
@@ -698,18 +720,19 @@ function Content() {
           {cards.map(([badge, title, img, num, benefits], i) => (
             <Reveal key={num} delay={i * 80}>
               <div style={{
-                background: "#EBEBEA", border: "1px solid rgba(0,0,0,0.07)", padding: "44px 36px",
+                background: "rgba(255,255,255,0.035)", border: "1px solid rgba(255,255,255,0.08)", padding: "44px 36px", borderRadius: 20,
+                backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)",
                 position: "relative", overflow: "hidden", transition: "all 0.35s", height: "100%",
-              }} onMouseEnter={(e) => { e.currentTarget.style.background = "#fff"; e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 20px 60px rgba(192,139,92,0.12)"; }}
-                 onMouseLeave={(e) => { e.currentTarget.style.background = "#EBEBEA"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
+              }} onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.07)"; e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 20px 60px rgba(192,139,92,0.18)"; }}
+                 onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.035)"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
                  data-cursor>
-                <div aria-hidden style={{ position: "absolute", top: -10, right: 8, ...bebas, fontSize: 88, color: "rgba(0,0,0,0.05)", lineHeight: 0.8 }}>{num}</div>
-                <div style={{ display: "inline-block", fontSize: 9, letterSpacing: "0.2em", textTransform: "uppercase", border: "1px solid rgba(0,0,0,0.1)", padding: "3px 12px", marginBottom: 20, position: "relative" }}>{badge}</div>
+                <div aria-hidden style={{ position: "absolute", top: -10, right: 8, ...bebas, fontSize: 88, color: "rgba(255,255,255,0.06)", lineHeight: 0.8 }}>{num}</div>
+                <div style={{ display: "inline-block", fontSize: 9, letterSpacing: "0.2em", textTransform: "uppercase", border: "1px solid rgba(255,255,255,0.15)", color: COPPER, padding: "3px 12px", marginBottom: 20, position: "relative", borderRadius: 999 }}>{badge}</div>
                 <img src={img} alt={title} loading="lazy" style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", maxHeight: 240, borderRadius: 4, marginBottom: 20 }} />
-                <div style={{ fontSize: 18, fontWeight: 600, color: "#1C1C1C", position: "relative" }}>{title}</div>
+                <div style={{ fontSize: 18, fontWeight: 600, color: "#fff", position: "relative" }}>{title}</div>
                 <ul style={{ listStyle: "none", padding: 0, marginTop: 16, position: "relative" }}>
                   {benefits.map((b, j) => (
-                    <li key={j} style={{ fontSize: 13, color: "#6A6A6A", fontWeight: 300, lineHeight: 1.75, marginTop: 8 }}>— {b}</li>
+                    <li key={j} style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", fontWeight: 300, lineHeight: 1.75, marginTop: 8 }}>— {b}</li>
                   ))}
                 </ul>
               </div>
@@ -733,34 +756,34 @@ function Compare() {
     ["Mindset", "Aucun", "Olympia Mindset inclus"],
   ];
   return (
-    <section style={{ background: "#fff", padding: "140px 24px" }}>
+    <section style={{ background: "#0F0F0F", padding: "140px 24px" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <Reveal><Eyebrow>La comparaison</Eyebrow></Reveal>
         <Reveal delay={80}>
-          <h2 style={{ ...bebas, fontSize: "clamp(48px,5.5vw,80px)", lineHeight: 1, color: "#1C1C1C", margin: "0 0 64px" }}>POURQUOI PAS LES ALTERNATIVES ?</h2>
+          <h2 style={{ ...bebas, fontSize: "clamp(48px,5.5vw,80px)", lineHeight: 1, color: "#fff", margin: "0 0 64px" }}>POURQUOI PAS LES <span style={{ ...serif, color: COPPER }}>alternatives</span> ?</h2>
         </Reveal>
         <Reveal delay={160}>
           <div style={{ overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 640 }}>
               <thead>
                 <tr>
-                  <th style={{ textAlign: "left", padding: "18px 20px", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "#6A6A6A", borderBottom: "1px solid rgba(0,0,0,0.1)" }}>Critère</th>
-                  <th style={{ textAlign: "left", padding: "18px 20px", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "#6A6A6A", borderBottom: "1px solid rgba(0,0,0,0.1)" }}>Programme basique</th>
-                  <th style={{ textAlign: "left", padding: "18px 20px", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "#1C1C1C", borderBottom: "2px solid #1C1C1C", background: "rgba(0,0,0,0.022)" }}>OBJECTIF MASSE®</th>
+                  <th style={{ textAlign: "left", padding: "18px 20px", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>Critère</th>
+                  <th style={{ textAlign: "left", padding: "18px 20px", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>Programme basique</th>
+                  <th style={{ textAlign: "left", padding: "18px 20px", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: COPPER, borderBottom: `2px solid ${COPPER}`, background: "rgba(192,139,92,0.06)" }}>OBJECTIF MASSE®</th>
                 </tr>
               </thead>
               <tbody>
                 {rows.map(([c, a, b], i) => (
                   <tr key={i}>
-                    <td style={{ padding: "20px", fontSize: 14, color: "#1C1C1C", borderBottom: "1px solid rgba(0,0,0,0.07)", fontWeight: 500 }}>{c}</td>
-                    <td style={{ padding: "20px", fontSize: 14, color: "#6A6A6A", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>{a}</td>
-                    <td style={{ padding: "20px", fontSize: 14, color: "#1C1C1C", borderBottom: "1px solid rgba(0,0,0,0.07)", background: "rgba(0,0,0,0.022)", fontWeight: 500 }}>{b}</td>
+                    <td style={{ padding: "20px", fontSize: 14, color: "#fff", borderBottom: "1px solid rgba(255,255,255,0.07)", fontWeight: 500 }}>{c}</td>
+                    <td style={{ padding: "20px", fontSize: 14, color: "rgba(255,255,255,0.5)", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>{a}</td>
+                    <td style={{ padding: "20px", fontSize: 14, color: "#fff", borderBottom: "1px solid rgba(255,255,255,0.07)", background: "rgba(192,139,92,0.05)", fontWeight: 500 }}>{b}</td>
                   </tr>
                 ))}
                 <tr>
-                  <td style={{ padding: "22px 20px", fontSize: 15, fontWeight: 600, color: "#1C1C1C" }}>Prix</td>
-                  <td style={{ padding: "22px 20px", fontSize: 15, fontWeight: 600, color: "#6A6A6A" }}>Gratuit — zéro valeur</td>
-                  <td style={{ padding: "22px 20px", fontSize: 18, fontWeight: 600, color: "#1C1C1C", background: "rgba(0,0,0,0.022)" }}>149€ · Accès à vie</td>
+                  <td style={{ padding: "22px 20px", fontSize: 15, fontWeight: 600, color: "#fff" }}>Prix</td>
+                  <td style={{ padding: "22px 20px", fontSize: 15, fontWeight: 600, color: "rgba(255,255,255,0.5)" }}>Gratuit — zéro valeur</td>
+                  <td style={{ padding: "22px 20px", fontSize: 18, fontWeight: 600, color: "#fff", background: "rgba(192,139,92,0.05)" }}>149€ · Accès à vie</td>
                 </tr>
               </tbody>
             </table>
@@ -824,28 +847,29 @@ function ForWhom() {
     "Tu cherches une promesse magique en 4 semaines",
   ];
   return (
-    <section style={{ background: "#EBEBEA", padding: "140px 24px" }}>
+    <section style={{ background: "#0A0A0A", padding: "140px 24px", position: "relative", overflow: "hidden" }}>
+      <Blobs dark />
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <Reveal><Eyebrow>Pour qui ?</Eyebrow></Reveal>
         <Reveal delay={80}>
-          <h2 style={{ ...bebas, fontSize: "clamp(52px,6vw,88px)", lineHeight: 1, color: "#1C1C1C", margin: "0 0 64px" }}>ENTRE. OU PASSE TON CHEMIN.</h2>
+          <h2 style={{ ...bebas, fontSize: "clamp(52px,6vw,88px)", lineHeight: 1, color: "#fff", margin: "0 0 64px" }}>ENTRE. <span style={{ ...serif, color: COPPER }}>Ou passe ton chemin.</span></h2>
         </Reveal>
         <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 80 }}>
           <div>
-            <div style={{ ...bebas, fontSize: 22, color: "#1C1C1C", letterSpacing: "0.05em", borderBottom: "1px solid rgba(0,0,0,0.15)", paddingBottom: 20 }}>OUI, ENTRE.</div>
+            <div style={{ ...bebas, fontSize: 22, color: "#fff", letterSpacing: "0.05em", borderBottom: `1px solid ${COPPER}`, paddingBottom: 20 }}>OUI, ENTRE.</div>
             <ul style={{ listStyle: "none", padding: 0 }}>
               {yes.map((t, i) => (
-                <li key={i} style={{ borderBottom: "1px solid rgba(0,0,0,0.07)", padding: "20px 0", fontSize: 14, color: "#1C1C1C", display: "flex", gap: 16, lineHeight: 1.6 }}>
+                <li key={i} style={{ borderBottom: "1px solid rgba(255,255,255,0.08)", padding: "20px 0", fontSize: 14, color: "rgba(255,255,255,0.85)", display: "flex", gap: 16, lineHeight: 1.6 }}>
                   <span style={{ color: COPPER, fontWeight: 700 }}>+</span>{t}
                 </li>
               ))}
             </ul>
           </div>
           <div>
-            <div style={{ ...bebas, fontSize: 22, color: "#6A6A6A", letterSpacing: "0.05em", borderBottom: "1px solid rgba(0,0,0,0.15)", paddingBottom: 20 }}>NON, PASSE.</div>
+            <div style={{ ...bebas, fontSize: 22, color: "rgba(255,255,255,0.4)", letterSpacing: "0.05em", borderBottom: "1px solid rgba(255,255,255,0.15)", paddingBottom: 20 }}>NON, PASSE.</div>
             <ul style={{ listStyle: "none", padding: 0 }}>
               {no.map((t, i) => (
-                <li key={i} style={{ borderBottom: "1px solid rgba(0,0,0,0.07)", padding: "20px 0", fontSize: 14, color: "#6A6A6A", display: "flex", gap: 16, lineHeight: 1.6 }}>
+                <li key={i} style={{ borderBottom: "1px solid rgba(255,255,255,0.08)", padding: "20px 0", fontSize: 14, color: "rgba(255,255,255,0.4)", display: "flex", gap: 16, lineHeight: 1.6 }}>
                   <span>×</span>{t}
                 </li>
               ))}
@@ -931,26 +955,26 @@ function FAQ() {
   ];
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section style={{ background: "#fff", padding: "140px 24px" }}>
+    <section style={{ background: "#0F0F0F", padding: "140px 24px" }}>
       <div style={{ textAlign: "center", marginBottom: 64 }}>
         <Eyebrow>Questions fréquentes</Eyebrow>
-        <h2 style={{ ...bebas, fontSize: "clamp(56px,7vw,96px)", lineHeight: 1, color: "#1C1C1C", margin: 0 }}>FAQ</h2>
+        <h2 style={{ ...bebas, fontSize: "clamp(56px,7vw,96px)", lineHeight: 1, color: "#fff", margin: 0 }}>FAQ</h2>
       </div>
       <div style={{ maxWidth: 800, margin: "0 auto" }}>
         {items.map(([q, a], i) => {
           const isOpen = open === i;
           return (
-            <div key={i} style={{ borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
+            <div key={i} style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
               <button onClick={() => setOpen(isOpen ? null : i)} style={{
                 width: "100%", background: "none", border: "none", cursor: "pointer",
                 display: "flex", justifyContent: "space-between", alignItems: "center",
-                padding: "24px 0", fontSize: 16, fontWeight: 500, color: "#1C1C1C", textAlign: "left",
+                padding: "24px 0", fontSize: 16, fontWeight: 500, color: "#fff", textAlign: "left",
               }}>
                 <span>{q}</span>
                 <span style={{ fontSize: 24, color: COPPER, transform: isOpen ? "rotate(45deg)" : "rotate(0deg)", transition: "transform 0.3s", lineHeight: 1 }}>+</span>
               </button>
               <div style={{ maxHeight: isOpen ? 400 : 0, overflow: "hidden", transition: "max-height 0.4s ease" }}>
-                <div style={{ fontSize: 15, fontWeight: 300, lineHeight: 1.85, color: "#6A6A6A", paddingBottom: 24 }}>{a}</div>
+                <div style={{ fontSize: 15, fontWeight: 300, lineHeight: 1.85, color: "rgba(255,255,255,0.6)", paddingBottom: 24 }}>{a}</div>
               </div>
             </div>
           );
@@ -962,18 +986,19 @@ function FAQ() {
 
 function FooterCTA() {
   return (
-    <section style={{ background: "#EBEBEA", padding: "160px 24px", position: "relative", overflow: "hidden", textAlign: "center" }}>
+    <section style={{ background: "#0A0A0A", padding: "160px 24px", position: "relative", overflow: "hidden", textAlign: "center" }}>
+      <Blobs dark />
       <div aria-hidden style={{
         position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center",
-        ...bebas, fontSize: "26vw", color: "rgba(0,0,0,0.025)", lineHeight: 0.8, pointerEvents: "none",
+        ...bebas, fontSize: "26vw", color: "rgba(255,255,255,0.03)", lineHeight: 0.8, pointerEvents: "none",
       }}>FIER</div>
       <div style={{ position: "relative", zIndex: 2, maxWidth: 900, margin: "0 auto" }}>
-        <h2 style={{ ...bebas, fontSize: "clamp(56px,7vw,96px)", lineHeight: 1, color: "#1C1C1C", margin: 0 }}>
+        <h2 style={{ ...bebas, fontSize: "clamp(56px,7vw,96px)", lineHeight: 1, color: "#fff", margin: 0 }}>
           DANS 12 SEMAINES,<br />
-          <span style={{ ...serif, color: "#6A6A6A" }}>tu seras fier</span><br />
+          <span style={{ ...serif, color: COPPER }}>tu seras fier</span><br />
           DE CE QUE TU VOIS.
         </h2>
-        <p style={{ fontSize: 16, color: "#6A6A6A", marginTop: 24, maxWidth: 640, marginLeft: "auto", marginRight: "auto" }}>
+        <p style={{ fontSize: 16, color: "rgba(255,255,255,0.6)", marginTop: 24, maxWidth: 640, marginLeft: "auto", marginRight: "auto" }}>
           Dans 12 semaines tu peux être massif, tracé, découpé — et enfin satisfait de ce que tu as construit. La seule question c'est : tu commences quand ?
         </p>
         <div style={{ marginTop: 48 }}>
@@ -1030,7 +1055,7 @@ function StickyBar() {
 /* ---------- Root ---------- */
 function Landing() {
   return (
-    <main style={{ background: "#EBEBEA", color: "#1C1C1C", fontFamily: "'Inter', sans-serif", overflow: "hidden" }}>
+    <main style={{ background: "#0A0A0A", color: "#fff", fontFamily: "'Inter', sans-serif", overflow: "hidden" }}>
       <GrainOverlay />
       <ScrollProgress />
       <CursorFollower />
