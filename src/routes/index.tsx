@@ -188,81 +188,100 @@ function Nav() {
 
 /* ---------- Hero ---------- */
 function Hero() {
-  const bgRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const on = (e: MouseEvent) => {
-      if (!bgRef.current) return;
-      const x = (e.clientX / window.innerWidth - 0.5) * 14;
-      const y = (e.clientY / window.innerHeight - 0.5) * 14;
-      bgRef.current.style.transform = `translate3d(${x}px,${y}px,0) scale(1.06)`;
-    };
-    window.addEventListener("mousemove", on);
-    return () => window.removeEventListener("mousemove", on);
-  }, []);
   return (
-    <section style={{ position: "relative", height: "100vh", minHeight: 720, overflow: "hidden", background: "#0A0A0A" }}>
-      <div ref={bgRef} style={{
-        position: "absolute", inset: -20, backgroundImage: `url(${heroTheo})`,
-        backgroundSize: "cover", backgroundPosition: "center 20%",
-        transition: "transform 0.1s ease-out", willChange: "transform",
-      }} />
-      <div style={{
-        position: "absolute", inset: 0, background:
-          "linear-gradient(105deg, rgba(8,8,8,0.82) 0%, rgba(8,8,8,0.55) 45%, rgba(8,8,8,0.20) 100%), linear-gradient(to top, rgba(8,8,8,0.75), transparent 55%)",
-      }} />
-      <motion.div aria-hidden animate={{ opacity: [0.7, 1, 0.7] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+    <section style={{ position: "relative", minHeight: "100vh", overflow: "hidden", background: "#0A0A0A" }}>
+      {/* Ambient glow */}
+      <motion.div aria-hidden animate={{ opacity: [0.55, 0.9, 0.55] }} transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         style={{
-          position: "absolute", inset: 0, background:
-            "radial-gradient(ellipse 55% 70% at 18% 75%, rgba(192,139,92,0.22), transparent 55%), radial-gradient(ellipse 30% 40% at 65% 25%, rgba(255,220,160,0.06), transparent 50%)",
+          position: "absolute", inset: 0, pointerEvents: "none", background:
+            "radial-gradient(ellipse 45% 60% at 12% 70%, rgba(192,139,92,0.22), transparent 60%), radial-gradient(ellipse 40% 50% at 85% 20%, rgba(192,139,92,0.10), transparent 55%)",
         }} />
+
+      {/* Watermark type derrière */}
       <div aria-hidden style={{
-        position: "absolute", bottom: -40, right: -20, fontFamily: "'Bebas Neue', sans-serif",
-        fontSize: "32vw", lineHeight: 0.8, color: "rgba(255,255,255,0.03)", pointerEvents: "none",
-      }}>MASSE</div>
+        position: "absolute", bottom: -60, left: -20, right: -20, fontFamily: "'Bebas Neue', sans-serif",
+        fontSize: "26vw", lineHeight: 0.8, color: "rgba(255,255,255,0.035)", pointerEvents: "none",
+        textAlign: "center", zIndex: 1, whiteSpace: "nowrap",
+      }}>OBJECTIF MASSE</div>
 
-      {/* Floating cards - desktop only */}
-      <div className="hidden lg:block">
-        {[
-          { top: 140, val: "TOP 15", label: "MR. OLYMPIA" },
-          { top: 300, val: "15 ANS", label: "DE COMPÉTITION PRO" },
-          { top: 460, val: "12", label: "SEMAINES · PROGRAMME" },
-        ].map((c, i) => (
-          <motion.div key={i} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.8 + i * 0.15, duration: 0.7 }}
-            style={{
-              position: "absolute", top: c.top, right: 56,
-              background: "rgba(255,255,255,0.08)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
-              border: "1px solid rgba(255,255,255,0.13)", boxShadow: "0 8px 48px rgba(0,0,0,0.25)",
-              padding: "22px 28px", minWidth: 220,
-            }}>
-            <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 40, color: "#fff", lineHeight: 1 }}>{c.val}</div>
-            <div style={{ fontSize: 9, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.55)", marginTop: 6 }}>{c.label}</div>
-          </motion.div>
-        ))}
-      </div>
-
-      <div style={{ position: "absolute", bottom: 72, left: "clamp(24px, 5vw, 56px)", right: 24, zIndex: 5 }}>
-        <div style={{ fontSize: 10, letterSpacing: "0.35em", textTransform: "uppercase", color: COPPER, marginBottom: 24 }}>
-          IFBB PRO · TOP 15 MR. OLYMPIA · 15 ANS DE COMPÉTITION
-        </div>
-        <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(80px,14vw,180px)", lineHeight: 0.88, margin: 0 }}>
-          <div style={{ color: "rgba(255,255,255,0.12)" }}><WordSplit text="OBJECTIF" delayBase={0.15} /></div>
-          <div style={{ color: "#fff" }}><WordSplit text="MASSE." delayBase={0.35} /></div>
-        </h1>
-        <p style={{ fontSize: 16, fontWeight: 300, color: "rgba(255,255,255,0.55)", maxWidth: 400, marginTop: 28 }}>
-          12 semaines pour prendre de la masse et atteindre ton meilleur physique.
-        </p>
-        <div style={{ marginTop: 36, display: "flex", alignItems: "center", gap: 20, flexWrap: "wrap" }}>
-          <a href={CHECKOUT} style={{
-            background: COPPER, color: "#fff", padding: "16px 44px", fontSize: 11, fontWeight: 600,
-            letterSpacing: "0.15em", textTransform: "uppercase", display: "inline-block", transition: "all 0.25s",
-          }} onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.filter = "brightness(0.9)"; }}
-             onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.filter = "brightness(1)"; }}>
-            Je démarre ma transformation
-          </a>
-          <div style={{ fontSize: 13, color: "rgba(255,255,255,0.35)" }}>
-            <span style={{ textDecoration: "line-through" }}>199€</span> · 149€
+      <div className="grid grid-cols-1 lg:grid-cols-12" style={{ position: "relative", zIndex: 2, minHeight: "100vh" }}>
+        {/* LEFT — texte */}
+        <div className="lg:col-span-7" style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", padding: "120px clamp(24px,5vw,72px) 60px" }}>
+          <div>
+            <div style={{ fontSize: 10, letterSpacing: "0.35em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginBottom: 8 }}>
+              — Since 2010 · IFBB Pro
+            </div>
           </div>
+          <div>
+            <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(64px,10vw,168px)", lineHeight: 0.86, margin: 0, color: "#fff" }}>
+              <div><WordSplit text="OBJECTIF" delayBase={0.15} /></div>
+              <div>
+                <span style={{ ...serif, color: COPPER, fontSize: "1.02em" }}>
+                  <WordSplit text="Masse." delayBase={0.35} />
+                </span>
+              </div>
+            </h1>
+            <p style={{ fontSize: 16, fontWeight: 300, color: "rgba(255,255,255,0.55)", maxWidth: 440, marginTop: 32, lineHeight: 1.6 }}>
+              12 semaines pour prendre de la masse et atteindre ton meilleur physique. La méthode d'un athlète Top 15 Mr. Olympia — condensée pour toi.
+            </p>
+            <div style={{ marginTop: 40, display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
+              <a href={CHECKOUT} style={{
+                background: COPPER, color: "#fff", padding: "18px 40px", fontSize: 11, fontWeight: 600,
+                letterSpacing: "0.18em", textTransform: "uppercase", display: "inline-flex", alignItems: "center", gap: 12,
+                borderRadius: 999, transition: "all 0.25s",
+              }} onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.filter = "brightness(0.92)"; }}
+                 onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.filter = "brightness(1)"; }}>
+                Je démarre <span style={{ opacity: 0.6 }}>·</span> 149€
+              </a>
+              <a href="#pricing" style={{
+                background: "rgba(255,255,255,0.06)", color: "#fff", padding: "18px 32px", fontSize: 11, fontWeight: 600,
+                letterSpacing: "0.18em", textTransform: "uppercase", borderRadius: 999,
+                border: "1px solid rgba(255,255,255,0.12)", backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)",
+              }}>Voir le programme →</a>
+            </div>
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 20, marginTop: 60, fontSize: 11, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)" }}>
+            <span>· 15 ans de compétition pro</span>
+            <span className="hidden md:inline">· Top 15 Mr. Olympia</span>
+            <span className="hidden md:inline">· Scroll ↓</span>
+          </div>
+        </div>
+
+        {/* RIGHT — photo pleine hauteur + carte glass produit */}
+        <div className="lg:col-span-5" style={{ position: "relative", minHeight: 480 }}>
+          <div style={{
+            position: "absolute", inset: 0, backgroundImage: `url(${heroTheo})`,
+            backgroundSize: "cover", backgroundPosition: "center 20%",
+          }} />
+          <div style={{
+            position: "absolute", inset: 0,
+            background: "linear-gradient(to left, transparent 40%, rgba(10,10,10,0.85) 100%), linear-gradient(to top, rgba(10,10,10,0.6), transparent 40%)",
+          }} />
+          {/* Badge Out Now */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.9, duration: 0.7 }}
+            className="hidden md:block"
+            style={{
+              position: "absolute", top: 120, right: 32, zIndex: 3,
+              background: "rgba(255,255,255,0.08)", backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)",
+              border: "1px solid rgba(255,255,255,0.14)", borderRadius: 20, padding: 20, width: 240,
+              boxShadow: "0 20px 60px rgba(0,0,0,0.4)",
+            }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 14 }}>
+              <span style={{ fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>Out Now</span>
+              <span style={{ fontSize: 10, letterSpacing: "0.15em", color: "rgba(255,255,255,0.5)", border: "1px solid rgba(255,255,255,0.2)", padding: "3px 10px", borderRadius: 999 }}>2026</span>
+            </div>
+            <div style={{ ...bebas, fontSize: 28, color: "#fff", lineHeight: 1 }}>Objectif Masse<span style={{ color: COPPER }}>®</span></div>
+            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", marginTop: 6 }}>12 semaines · 4 phases · 50+ vidéos</div>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: 16, paddingTop: 16, borderTop: "1px solid rgba(255,255,255,0.08)" }}>
+              <div>
+                <div style={{ fontSize: 10, color: "rgba(255,255,255,0.35)", textDecoration: "line-through" }}>199€</div>
+                <div style={{ ...bebas, fontSize: 22, color: "#fff", lineHeight: 1 }}>149€</div>
+              </div>
+              <a href={CHECKOUT} aria-label="Commander" style={{
+                width: 42, height: 42, borderRadius: "50%", background: COPPER, display: "grid", placeItems: "center", color: "#fff", fontSize: 18,
+              }}>↗</a>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
