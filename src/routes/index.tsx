@@ -847,28 +847,29 @@ function ForWhom() {
     "Tu cherches une promesse magique en 4 semaines",
   ];
   return (
-    <section style={{ background: "#EBEBEA", padding: "140px 24px" }}>
+    <section style={{ background: "#0A0A0A", padding: "140px 24px", position: "relative", overflow: "hidden" }}>
+      <Blobs dark />
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <Reveal><Eyebrow>Pour qui ?</Eyebrow></Reveal>
         <Reveal delay={80}>
-          <h2 style={{ ...bebas, fontSize: "clamp(52px,6vw,88px)", lineHeight: 1, color: "#1C1C1C", margin: "0 0 64px" }}>ENTRE. OU PASSE TON CHEMIN.</h2>
+          <h2 style={{ ...bebas, fontSize: "clamp(52px,6vw,88px)", lineHeight: 1, color: "#fff", margin: "0 0 64px" }}>ENTRE. <span style={{ ...serif, color: COPPER }}>Ou passe ton chemin.</span></h2>
         </Reveal>
         <div className="grid grid-cols-1 md:grid-cols-2" style={{ gap: 80 }}>
           <div>
-            <div style={{ ...bebas, fontSize: 22, color: "#1C1C1C", letterSpacing: "0.05em", borderBottom: "1px solid rgba(0,0,0,0.15)", paddingBottom: 20 }}>OUI, ENTRE.</div>
+            <div style={{ ...bebas, fontSize: 22, color: "#fff", letterSpacing: "0.05em", borderBottom: `1px solid ${COPPER}`, paddingBottom: 20 }}>OUI, ENTRE.</div>
             <ul style={{ listStyle: "none", padding: 0 }}>
               {yes.map((t, i) => (
-                <li key={i} style={{ borderBottom: "1px solid rgba(0,0,0,0.07)", padding: "20px 0", fontSize: 14, color: "#1C1C1C", display: "flex", gap: 16, lineHeight: 1.6 }}>
+                <li key={i} style={{ borderBottom: "1px solid rgba(255,255,255,0.08)", padding: "20px 0", fontSize: 14, color: "rgba(255,255,255,0.85)", display: "flex", gap: 16, lineHeight: 1.6 }}>
                   <span style={{ color: COPPER, fontWeight: 700 }}>+</span>{t}
                 </li>
               ))}
             </ul>
           </div>
           <div>
-            <div style={{ ...bebas, fontSize: 22, color: "#6A6A6A", letterSpacing: "0.05em", borderBottom: "1px solid rgba(0,0,0,0.15)", paddingBottom: 20 }}>NON, PASSE.</div>
+            <div style={{ ...bebas, fontSize: 22, color: "rgba(255,255,255,0.4)", letterSpacing: "0.05em", borderBottom: "1px solid rgba(255,255,255,0.15)", paddingBottom: 20 }}>NON, PASSE.</div>
             <ul style={{ listStyle: "none", padding: 0 }}>
               {no.map((t, i) => (
-                <li key={i} style={{ borderBottom: "1px solid rgba(0,0,0,0.07)", padding: "20px 0", fontSize: 14, color: "#6A6A6A", display: "flex", gap: 16, lineHeight: 1.6 }}>
+                <li key={i} style={{ borderBottom: "1px solid rgba(255,255,255,0.08)", padding: "20px 0", fontSize: 14, color: "rgba(255,255,255,0.4)", display: "flex", gap: 16, lineHeight: 1.6 }}>
                   <span>×</span>{t}
                 </li>
               ))}
@@ -954,26 +955,26 @@ function FAQ() {
   ];
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section style={{ background: "#fff", padding: "140px 24px" }}>
+    <section style={{ background: "#0F0F0F", padding: "140px 24px" }}>
       <div style={{ textAlign: "center", marginBottom: 64 }}>
         <Eyebrow>Questions fréquentes</Eyebrow>
-        <h2 style={{ ...bebas, fontSize: "clamp(56px,7vw,96px)", lineHeight: 1, color: "#1C1C1C", margin: 0 }}>FAQ</h2>
+        <h2 style={{ ...bebas, fontSize: "clamp(56px,7vw,96px)", lineHeight: 1, color: "#fff", margin: 0 }}>FAQ</h2>
       </div>
       <div style={{ maxWidth: 800, margin: "0 auto" }}>
         {items.map(([q, a], i) => {
           const isOpen = open === i;
           return (
-            <div key={i} style={{ borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
+            <div key={i} style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
               <button onClick={() => setOpen(isOpen ? null : i)} style={{
                 width: "100%", background: "none", border: "none", cursor: "pointer",
                 display: "flex", justifyContent: "space-between", alignItems: "center",
-                padding: "24px 0", fontSize: 16, fontWeight: 500, color: "#1C1C1C", textAlign: "left",
+                padding: "24px 0", fontSize: 16, fontWeight: 500, color: "#fff", textAlign: "left",
               }}>
                 <span>{q}</span>
                 <span style={{ fontSize: 24, color: COPPER, transform: isOpen ? "rotate(45deg)" : "rotate(0deg)", transition: "transform 0.3s", lineHeight: 1 }}>+</span>
               </button>
               <div style={{ maxHeight: isOpen ? 400 : 0, overflow: "hidden", transition: "max-height 0.4s ease" }}>
-                <div style={{ fontSize: 15, fontWeight: 300, lineHeight: 1.85, color: "#6A6A6A", paddingBottom: 24 }}>{a}</div>
+                <div style={{ fontSize: 15, fontWeight: 300, lineHeight: 1.85, color: "rgba(255,255,255,0.6)", paddingBottom: 24 }}>{a}</div>
               </div>
             </div>
           );
@@ -985,18 +986,19 @@ function FAQ() {
 
 function FooterCTA() {
   return (
-    <section style={{ background: "#EBEBEA", padding: "160px 24px", position: "relative", overflow: "hidden", textAlign: "center" }}>
+    <section style={{ background: "#0A0A0A", padding: "160px 24px", position: "relative", overflow: "hidden", textAlign: "center" }}>
+      <Blobs dark />
       <div aria-hidden style={{
         position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center",
-        ...bebas, fontSize: "26vw", color: "rgba(0,0,0,0.025)", lineHeight: 0.8, pointerEvents: "none",
+        ...bebas, fontSize: "26vw", color: "rgba(255,255,255,0.03)", lineHeight: 0.8, pointerEvents: "none",
       }}>FIER</div>
       <div style={{ position: "relative", zIndex: 2, maxWidth: 900, margin: "0 auto" }}>
-        <h2 style={{ ...bebas, fontSize: "clamp(56px,7vw,96px)", lineHeight: 1, color: "#1C1C1C", margin: 0 }}>
+        <h2 style={{ ...bebas, fontSize: "clamp(56px,7vw,96px)", lineHeight: 1, color: "#fff", margin: 0 }}>
           DANS 12 SEMAINES,<br />
-          <span style={{ ...serif, color: "#6A6A6A" }}>tu seras fier</span><br />
+          <span style={{ ...serif, color: COPPER }}>tu seras fier</span><br />
           DE CE QUE TU VOIS.
         </h2>
-        <p style={{ fontSize: 16, color: "#6A6A6A", marginTop: 24, maxWidth: 640, marginLeft: "auto", marginRight: "auto" }}>
+        <p style={{ fontSize: 16, color: "rgba(255,255,255,0.6)", marginTop: 24, maxWidth: 640, marginLeft: "auto", marginRight: "auto" }}>
           Dans 12 semaines tu peux être massif, tracé, découpé — et enfin satisfait de ce que tu as construit. La seule question c'est : tu commences quand ?
         </p>
         <div style={{ marginTop: 48 }}>
@@ -1053,7 +1055,7 @@ function StickyBar() {
 /* ---------- Root ---------- */
 function Landing() {
   return (
-    <main style={{ background: "#EBEBEA", color: "#1C1C1C", fontFamily: "'Inter', sans-serif", overflow: "hidden" }}>
+    <main style={{ background: "#0A0A0A", color: "#fff", fontFamily: "'Inter', sans-serif", overflow: "hidden" }}>
       <GrainOverlay />
       <ScrollProgress />
       <CursorFollower />
