@@ -703,15 +703,16 @@ function Content() {
     ]],
   ];
   return (
-    <section style={{ background: "#EBEBEA", padding: "140px 24px", position: "relative", overflow: "hidden" }}>
-      <Watermark text="5" size="22vw" />
+    <section style={{ background: "#0A0A0A", padding: "140px 24px", position: "relative", overflow: "hidden" }}>
+      <Watermark text="5" size="22vw" color="rgba(255,255,255,0.028)" />
+      <Blobs dark />
       <div style={{ maxWidth: 1240, margin: "0 auto", position: "relative" }}>
         <Reveal><Eyebrow>Ce que tu reçois</Eyebrow></Reveal>
         <Reveal delay={80}>
-          <h2 style={{ ...bebas, fontSize: "clamp(52px,6vw,88px)", lineHeight: 1, color: "#1C1C1C", margin: 0 }}>TOUT LE SYSTÈME. PAS JUSTE UN PLAN.</h2>
+          <h2 style={{ ...bebas, fontSize: "clamp(52px,6vw,88px)", lineHeight: 1, color: "#fff", margin: 0 }}>TOUT LE SYSTÈME. <span style={{ ...serif, color: COPPER }}>Pas juste un plan.</span></h2>
         </Reveal>
         <Reveal delay={160}>
-          <p style={{ fontSize: 14, color: "#6A6A6A", maxWidth: 600, marginTop: 24 }}>
+          <p style={{ fontSize: 14, color: "rgba(255,255,255,0.55)", maxWidth: 600, marginTop: 24 }}>
             Une méthode complète — entraînement, nutrition, mindset, récupération. Tout ce dont tu as besoin pour prendre de la masse.
           </p>
         </Reveal>
@@ -719,18 +720,19 @@ function Content() {
           {cards.map(([badge, title, img, num, benefits], i) => (
             <Reveal key={num} delay={i * 80}>
               <div style={{
-                background: "#EBEBEA", border: "1px solid rgba(0,0,0,0.07)", padding: "44px 36px",
+                background: "rgba(255,255,255,0.035)", border: "1px solid rgba(255,255,255,0.08)", padding: "44px 36px", borderRadius: 20,
+                backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)",
                 position: "relative", overflow: "hidden", transition: "all 0.35s", height: "100%",
-              }} onMouseEnter={(e) => { e.currentTarget.style.background = "#fff"; e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 20px 60px rgba(192,139,92,0.12)"; }}
-                 onMouseLeave={(e) => { e.currentTarget.style.background = "#EBEBEA"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
+              }} onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.07)"; e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 20px 60px rgba(192,139,92,0.18)"; }}
+                 onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.035)"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
                  data-cursor>
-                <div aria-hidden style={{ position: "absolute", top: -10, right: 8, ...bebas, fontSize: 88, color: "rgba(0,0,0,0.05)", lineHeight: 0.8 }}>{num}</div>
-                <div style={{ display: "inline-block", fontSize: 9, letterSpacing: "0.2em", textTransform: "uppercase", border: "1px solid rgba(0,0,0,0.1)", padding: "3px 12px", marginBottom: 20, position: "relative" }}>{badge}</div>
+                <div aria-hidden style={{ position: "absolute", top: -10, right: 8, ...bebas, fontSize: 88, color: "rgba(255,255,255,0.06)", lineHeight: 0.8 }}>{num}</div>
+                <div style={{ display: "inline-block", fontSize: 9, letterSpacing: "0.2em", textTransform: "uppercase", border: "1px solid rgba(255,255,255,0.15)", color: COPPER, padding: "3px 12px", marginBottom: 20, position: "relative", borderRadius: 999 }}>{badge}</div>
                 <img src={img} alt={title} loading="lazy" style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", maxHeight: 240, borderRadius: 4, marginBottom: 20 }} />
-                <div style={{ fontSize: 18, fontWeight: 600, color: "#1C1C1C", position: "relative" }}>{title}</div>
+                <div style={{ fontSize: 18, fontWeight: 600, color: "#fff", position: "relative" }}>{title}</div>
                 <ul style={{ listStyle: "none", padding: 0, marginTop: 16, position: "relative" }}>
                   {benefits.map((b, j) => (
-                    <li key={j} style={{ fontSize: 13, color: "#6A6A6A", fontWeight: 300, lineHeight: 1.75, marginTop: 8 }}>— {b}</li>
+                    <li key={j} style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", fontWeight: 300, lineHeight: 1.75, marginTop: 8 }}>— {b}</li>
                   ))}
                 </ul>
               </div>
