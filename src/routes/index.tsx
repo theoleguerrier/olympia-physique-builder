@@ -593,23 +593,23 @@ function Diff() {
     ["03", "Applicable à ton niveau", "Débutant, intermédiaire, confirmé. Chaque phase est structurée pour t'emmener au niveau supérieur. Le programme s'adapte à toi."],
   ];
   return (
-    <section style={{ background: "#fff", padding: "140px 0 0" }}>
+    <section style={{ background: "#0F0F0F", padding: "140px 0 0" }}>
       <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 24px" }}>
         <Reveal><Eyebrow>La différence</Eyebrow></Reveal>
         <Reveal delay={80}>
-          <h2 style={{ ...bebas, fontSize: "clamp(52px,6vw,88px)", lineHeight: 1, color: "#1C1C1C", margin: 0 }}>CE N'EST PAS JUSTE UN PROGRAMME.</h2>
+          <h2 style={{ ...bebas, fontSize: "clamp(52px,6vw,88px)", lineHeight: 1, color: "#fff", margin: 0 }}>CE N'EST PAS JUSTE UN PROGRAMME.</h2>
         </Reveal>
       </div>
-      <div style={{ marginTop: 80, background: "rgba(0,0,0,0.07)" }} className="grid grid-cols-1 md:grid-cols-3 gap-px">
+      <div style={{ marginTop: 80, background: "rgba(255,255,255,0.06)" }} className="grid grid-cols-1 md:grid-cols-3 gap-px">
         {items.map(([n, t, b], i) => (
           <Reveal key={n} delay={i * 100}>
-            <div style={{ background: "#fff", padding: "56px 48px", position: "relative", height: "100%", transition: "all 0.35s" }}
-              onMouseEnter={(e) => { e.currentTarget.style.background = "#EBEBEA"; e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 20px 60px rgba(192,139,92,0.10)"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = "#fff"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
+            <div style={{ background: "#0F0F0F", padding: "56px 48px", position: "relative", height: "100%", transition: "all 0.35s" }}
+              onMouseEnter={(e) => { e.currentTarget.style.background = "#151515"; e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 20px 60px rgba(192,139,92,0.15)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.background = "#0F0F0F"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "none"; }}
               data-cursor>
-              <div aria-hidden style={{ ...bebas, fontSize: 88, color: "rgba(0,0,0,0.05)", lineHeight: 0.8 }}>{n}</div>
-              <div style={{ ...bebas, fontSize: 26, color: "#1C1C1C", marginTop: 12 }}>{t}</div>
-              <div style={{ fontSize: 14, color: "#6A6A6A", fontWeight: 300, lineHeight: 1.85, marginTop: 16 }}>{b}</div>
+              <div aria-hidden style={{ ...bebas, fontSize: 88, color: "rgba(255,255,255,0.06)", lineHeight: 0.8 }}>{n}</div>
+              <div style={{ ...bebas, fontSize: 26, color: "#fff", marginTop: 12 }}>{t}</div>
+              <div style={{ fontSize: 14, color: "rgba(255,255,255,0.55)", fontWeight: 300, lineHeight: 1.85, marginTop: 16 }}>{b}</div>
             </div>
           </Reveal>
         ))}
