@@ -319,15 +319,15 @@ function Stats() {
     { v: "TOUS", l: "NIVEAUX" },
   ];
   return (
-    <section style={{ background: "#fff", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>
+    <section style={{ background: "#0F0F0F", borderTop: "1px solid rgba(255,255,255,0.05)", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
       <div className="grid grid-cols-2 md:grid-cols-5">
         {items.map((s, i) => (
           <div key={i} style={{
             padding: "52px 20px", textAlign: "center",
-            borderRight: i < items.length - 1 ? "1px solid rgba(0,0,0,0.07)" : "none",
+            borderRight: i < items.length - 1 ? "1px solid rgba(255,255,255,0.05)" : "none",
           }} className={i >= 3 ? "md:border-r" : ""}>
-            <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 52, color: "#0A0A0A", lineHeight: 1 }}>{s.v}</div>
-            <div style={{ fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "#6A6A6A", marginTop: 6 }}>{s.l}</div>
+            <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 52, color: "#fff", lineHeight: 1 }}>{s.v}</div>
+            <div style={{ fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginTop: 6 }}>{s.l}</div>
           </div>
         ))}
       </div>
