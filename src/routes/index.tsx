@@ -756,34 +756,34 @@ function Compare() {
     ["Mindset", "Aucun", "Olympia Mindset inclus"],
   ];
   return (
-    <section style={{ background: "#fff", padding: "140px 24px" }}>
+    <section style={{ background: "#0F0F0F", padding: "140px 24px" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <Reveal><Eyebrow>La comparaison</Eyebrow></Reveal>
         <Reveal delay={80}>
-          <h2 style={{ ...bebas, fontSize: "clamp(48px,5.5vw,80px)", lineHeight: 1, color: "#1C1C1C", margin: "0 0 64px" }}>POURQUOI PAS LES ALTERNATIVES ?</h2>
+          <h2 style={{ ...bebas, fontSize: "clamp(48px,5.5vw,80px)", lineHeight: 1, color: "#fff", margin: "0 0 64px" }}>POURQUOI PAS LES <span style={{ ...serif, color: COPPER }}>alternatives</span> ?</h2>
         </Reveal>
         <Reveal delay={160}>
           <div style={{ overflowX: "auto" }}>
             <table style={{ width: "100%", borderCollapse: "collapse", minWidth: 640 }}>
               <thead>
                 <tr>
-                  <th style={{ textAlign: "left", padding: "18px 20px", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "#6A6A6A", borderBottom: "1px solid rgba(0,0,0,0.1)" }}>Critère</th>
-                  <th style={{ textAlign: "left", padding: "18px 20px", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "#6A6A6A", borderBottom: "1px solid rgba(0,0,0,0.1)" }}>Programme basique</th>
-                  <th style={{ textAlign: "left", padding: "18px 20px", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "#1C1C1C", borderBottom: "2px solid #1C1C1C", background: "rgba(0,0,0,0.022)" }}>OBJECTIF MASSE®</th>
+                  <th style={{ textAlign: "left", padding: "18px 20px", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>Critère</th>
+                  <th style={{ textAlign: "left", padding: "18px 20px", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>Programme basique</th>
+                  <th style={{ textAlign: "left", padding: "18px 20px", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: COPPER, borderBottom: `2px solid ${COPPER}`, background: "rgba(192,139,92,0.06)" }}>OBJECTIF MASSE®</th>
                 </tr>
               </thead>
               <tbody>
                 {rows.map(([c, a, b], i) => (
                   <tr key={i}>
-                    <td style={{ padding: "20px", fontSize: 14, color: "#1C1C1C", borderBottom: "1px solid rgba(0,0,0,0.07)", fontWeight: 500 }}>{c}</td>
-                    <td style={{ padding: "20px", fontSize: 14, color: "#6A6A6A", borderBottom: "1px solid rgba(0,0,0,0.07)" }}>{a}</td>
-                    <td style={{ padding: "20px", fontSize: 14, color: "#1C1C1C", borderBottom: "1px solid rgba(0,0,0,0.07)", background: "rgba(0,0,0,0.022)", fontWeight: 500 }}>{b}</td>
+                    <td style={{ padding: "20px", fontSize: 14, color: "#fff", borderBottom: "1px solid rgba(255,255,255,0.07)", fontWeight: 500 }}>{c}</td>
+                    <td style={{ padding: "20px", fontSize: 14, color: "rgba(255,255,255,0.5)", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>{a}</td>
+                    <td style={{ padding: "20px", fontSize: 14, color: "#fff", borderBottom: "1px solid rgba(255,255,255,0.07)", background: "rgba(192,139,92,0.05)", fontWeight: 500 }}>{b}</td>
                   </tr>
                 ))}
                 <tr>
-                  <td style={{ padding: "22px 20px", fontSize: 15, fontWeight: 600, color: "#1C1C1C" }}>Prix</td>
-                  <td style={{ padding: "22px 20px", fontSize: 15, fontWeight: 600, color: "#6A6A6A" }}>Gratuit — zéro valeur</td>
-                  <td style={{ padding: "22px 20px", fontSize: 18, fontWeight: 600, color: "#1C1C1C", background: "rgba(0,0,0,0.022)" }}>149€ · Accès à vie</td>
+                  <td style={{ padding: "22px 20px", fontSize: 15, fontWeight: 600, color: "#fff" }}>Prix</td>
+                  <td style={{ padding: "22px 20px", fontSize: 15, fontWeight: 600, color: "rgba(255,255,255,0.5)" }}>Gratuit — zéro valeur</td>
+                  <td style={{ padding: "22px 20px", fontSize: 18, fontWeight: 600, color: "#fff", background: "rgba(192,139,92,0.05)" }}>149€ · Accès à vie</td>
                 </tr>
               </tbody>
             </table>
