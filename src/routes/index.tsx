@@ -501,23 +501,24 @@ function TrainingBanner() {
 
 function Bio() {
   return (
-    <section style={{ background: "#EBEBEA", padding: "140px 24px" }}>
+    <section style={{ background: "#0A0A0A", padding: "140px 24px", position: "relative", overflow: "hidden" }}>
+      <Blobs dark />
       <div style={{ maxWidth: 1240, margin: "0 auto" }} className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
         <div className="lg:col-span-5" style={{ position: "relative" }}>
           <Reveal>
             <div style={{ position: "relative" }}>
-              <img src={coverOm} alt="Objectif Masse cover" style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", display: "block" }} />
+              <img src={coverOm} alt="Objectif Masse cover" style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", display: "block", borderRadius: 12 }} />
               <div className="hidden md:block" style={{
                 position: "absolute", bottom: -28, right: -36,
-                background: "rgba(255,255,255,0.72)", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
-                border: "1px solid rgba(0,0,0,0.07)", padding: 24, minWidth: 220,
-                boxShadow: "0 20px 60px rgba(0,0,0,0.08)",
+                background: "rgba(255,255,255,0.06)", backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)",
+                border: "1px solid rgba(255,255,255,0.12)", padding: 24, minWidth: 220, borderRadius: 16,
+                boxShadow: "0 20px 60px rgba(0,0,0,0.4)",
               }}>
-                <div style={{ ...bebas, fontSize: 36, color: "#1C1C1C", lineHeight: 1 }}>TOP 15</div>
-                <div style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "#6A6A6A", marginTop: 4 }}>Mr. Olympia</div>
-                <div style={{ height: 1, background: "rgba(0,0,0,0.07)", margin: "16px 0" }} />
-                <div style={{ ...bebas, fontSize: 28, color: "#1C1C1C", lineHeight: 1 }}>2× PRO</div>
-                <div style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "#6A6A6A", marginTop: 4 }}>Shows 2023</div>
+                <div style={{ ...bebas, fontSize: 36, color: "#fff", lineHeight: 1 }}>TOP 15</div>
+                <div style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginTop: 4 }}>Mr. Olympia</div>
+                <div style={{ height: 1, background: "rgba(255,255,255,0.1)", margin: "16px 0" }} />
+                <div style={{ ...bebas, fontSize: 28, color: "#fff", lineHeight: 1 }}>2× PRO</div>
+                <div style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)", marginTop: 4 }}>Shows 2023</div>
               </div>
             </div>
           </Reveal>
@@ -525,27 +526,27 @@ function Bio() {
         <div className="lg:col-span-7">
           <Reveal><Eyebrow>IFBB Pro · Top 15 Olympia</Eyebrow></Reveal>
           <Reveal delay={80}>
-            <h2 style={{ ...bebas, fontSize: "clamp(60px,6.5vw,88px)", lineHeight: 0.9, color: "#1C1C1C", margin: 0 }}>THÉO LEGUERRIER</h2>
+            <h2 style={{ ...bebas, fontSize: "clamp(60px,6.5vw,88px)", lineHeight: 0.9, color: "#fff", margin: 0 }}>THÉO <span style={{ ...serif, color: COPPER }}>Leguerrier</span></h2>
           </Reveal>
-          <div style={{ fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "#6A6A6A", marginTop: 16, marginBottom: 52 }}>
+          <div style={{ fontSize: 10, letterSpacing: "0.22em", textTransform: "uppercase", color: "rgba(255,255,255,0.45)", marginTop: 16, marginBottom: 52 }}>
             IFBB PRO · TOP 15 MR. OLYMPIA
           </div>
           <Reveal delay={160}>
-            <div style={{ fontSize: 15, lineHeight: 1.9, color: "#1C1C1C", fontWeight: 300 }}>
+            <div style={{ fontSize: 15, lineHeight: 1.9, color: "rgba(255,255,255,0.75)", fontWeight: 300 }}>
               <p>J'ai dédié 15 ans de ma vie au bodybuilding et à la transformation physique.</p>
               <p style={{ marginTop: 18 }}>Chaque séance, chaque repas, chaque phase de préparation — tout est pensé, structuré, optimisé pour progresser. C'est cette obsession qui m'a amené jusqu'à Mr. Olympia, la compétition la plus sélective au monde, où je fais partie du Top 15 mondial.</p>
               <p style={{ marginTop: 18 }}>Ces 15 années m'ont permis de travailler aux côtés des meilleurs coachs et athlètes de la planète. Tester les méthodes, les protocoles, les approches — comprendre ce qui construit vraiment du muscle. Pas en théorie. Sur le terrain, sur scène devant les meilleurs juges du monde.</p>
-              <p style={{ marginTop: 18, fontWeight: 500 }}>Objectif Masse c'est le condensé de tout ça.</p>
+              <p style={{ marginTop: 18, fontWeight: 500, color: "#fff" }}>Objectif Masse c'est le condensé de tout ça.</p>
             </div>
           </Reveal>
-          <ul style={{ marginTop: 52, borderTop: "1px solid rgba(0,0,0,0.1)", listStyle: "none", padding: 0 }}>
+          <ul style={{ marginTop: 52, borderTop: "1px solid rgba(255,255,255,0.1)", listStyle: "none", padding: 0 }}>
             {[
               "15 ans de compétition professionnelle à haut niveau",
               "Top 15 Mr. Olympia — parmi les meilleurs bodybuilders du monde",
               "Échanges directs avec les meilleurs coachs et athlètes mondiaux",
               "Méthode construite, testée et affinée saison après saison",
             ].map((t, i) => (
-              <li key={i} style={{ borderBottom: "1px solid rgba(0,0,0,0.1)", padding: "18px 0", fontSize: 14, color: "#1C1C1C", display: "flex", gap: 16 }}>
+              <li key={i} style={{ borderBottom: "1px solid rgba(255,255,255,0.1)", padding: "18px 0", fontSize: 14, color: "rgba(255,255,255,0.85)", display: "flex", gap: 16 }}>
                 <span style={{ color: COPPER }}>—</span>{t}
               </li>
             ))}
