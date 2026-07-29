@@ -147,4 +147,44 @@
     background-color: var(--color-background);
     color: var(--color-foreground);
   }
+
+  html {
+    scroll-behavior: smooth;
+    scrollbar-color: #095591 #0A0A0A;
+    scrollbar-width: thin;
+  }
+
+  ::selection {
+    background-color: #095591;
+    color: #ffffff;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid #095591;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+::-webkit-scrollbar-thumb {
+  background: #095591;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0c6bb8;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
 }
