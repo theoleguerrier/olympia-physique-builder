@@ -167,7 +167,6 @@ function Nav() {
 function Hero() {
   const reduceMotion = useReducedMotion();
   const isMobile = useIsMobile();
-  const [landed, setLanded] = useState(false);
   return (
     <section style={{ position: "relative", minHeight: "100vh", overflow: "hidden", background: "#0A0A0A" }}>
       {/* Photo plein cadre */}
@@ -194,14 +193,8 @@ function Hero() {
           alt=""
           aria-hidden
           initial={reduceMotion ? false : { opacity: 0, rotateY: -720, scale: 0.3 }}
-          animate={reduceMotion ? { opacity: 1, rotateY: 0, scale: 1 } : landed ? { opacity: 1, rotateY: [18, -18, 18], scale: 1 } : { opacity: 1, rotateY: [-720, 15, -5, 0], scale: 1 }}
-          transition={reduceMotion ? { duration: 0 } : landed ? { duration: 6, ease: "easeInOut", repeat: Infinity } : {
-            delay: 0.15,
-            rotateY: { duration: 2, times: [0, 0.72, 0.88, 1], ease: ["easeInOut", "easeOut", "easeOut"] },
-            opacity: { duration: 0.7 },
-            scale: { duration: 1.1, ease: [0.16, 1, 0.3, 1] },
-          }}
-          onAnimationComplete={() => { if (!reduceMotion && !landed) setLanded(true); }}
+          animate={{ opacity: 1, rotateY: 0, scale: 1 }}
+          transition={reduceMotion ? { duration: 0 } : { duration: 1.6, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
           style={{ width: 48, height: "auto", display: "block" }}
         />
       </div>
