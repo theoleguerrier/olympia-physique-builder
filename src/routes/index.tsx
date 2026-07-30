@@ -187,8 +187,8 @@ function Hero() {
           </p>
           <div style={{ marginTop: 40, display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
             <a href={CHECKOUT} style={{
-              background: ACCENT, color: "#fff", padding: "18px 40px", fontSize: 11, fontWeight: 600,
-              letterSpacing: "0.18em", textTransform: "uppercase", display: "inline-flex", alignItems: "center", gap: 12,
+              background: ACCENT, color: "#fff", padding: "clamp(14px,3.5vw,18px) clamp(22px,6vw,40px)", fontSize: "clamp(10px,2.6vw,11px)", fontWeight: 600,
+              letterSpacing: "0.14em", textTransform: "uppercase", display: "inline-flex", alignItems: "center", gap: 12, whiteSpace: "nowrap",
               borderRadius: 999, transition: "all 0.25s",
             }} onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-2px) scale(1)"; e.currentTarget.style.filter = "brightness(0.92)"; }}
                onMouseLeave={(e) => { e.currentTarget.style.transform = "translateY(0) scale(1)"; e.currentTarget.style.filter = "brightness(1)"; }}
@@ -502,7 +502,7 @@ function Bio() {
   return (
     <section style={{ background: "#0A0A0A", position: "relative", overflow: "hidden", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
       <div className="grid grid-cols-1 lg:grid-cols-12" style={{ alignItems: "stretch" }}>
-        <div className="lg:col-span-5 h-[420px] lg:h-auto" style={{ position: "relative" }}>
+        <div className="lg:col-span-5 h-[420px] lg:h-auto order-2 lg:order-1" style={{ position: "relative" }}>
           <Reveal className="h-full">
             <div style={{ position: "absolute", inset: 0 }}>
               <img src={coverOm} alt="Théo Leguerrier" style={{
@@ -515,19 +515,19 @@ function Bio() {
                 animate={reduceMotion ? {} : { y: [0, -6, 0] }}
                 transition={reduceMotion ? undefined : { duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
                 style={{
-                  position: "absolute", bottom: 32, right: 32,
+                  position: "absolute", bottom: "clamp(16px,4vw,32px)", right: "clamp(16px,4vw,32px)",
                   background: "rgba(20,20,20,0.55)", backdropFilter: "blur(24px)", WebkitBackdropFilter: "blur(24px)",
-                  border: "1px solid rgba(255,255,255,0.14)", padding: 24, minWidth: 200, borderRadius: 28,
+                  border: "1px solid rgba(255,255,255,0.14)", padding: "clamp(14px,3.5vw,24px)", minWidth: "clamp(150px,40vw,200px)", borderRadius: 28,
                   boxShadow: "0 24px 60px rgba(0,0,0,0.45)",
                 }}>
-                <div style={{ fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>Top 15</div>
-                <div style={{ ...bebas, fontSize: 26, color: "#fff", lineHeight: 1, marginTop: 4 }}>Mr. Olympia</div>
-                <div style={{ fontSize: 13, color: "rgba(255,255,255,0.55)", marginTop: 8 }}>15 ans d'expérience</div>
-                <div style={{ height: 1, background: "rgba(255,255,255,0.1)", margin: "16px 0" }} />
-                <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+                <div style={{ fontSize: "clamp(9px,2.2vw,10px)", letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.5)" }}>Top 15</div>
+                <div style={{ ...bebas, fontSize: "clamp(19px,5vw,26px)", color: "#fff", lineHeight: 1, marginTop: 4 }}>Mr. Olympia</div>
+                <div style={{ fontSize: "clamp(11px,2.8vw,13px)", color: "rgba(255,255,255,0.55)", marginTop: 8 }}>15 ans d'expérience</div>
+                <div style={{ height: 1, background: "rgba(255,255,255,0.1)", margin: "clamp(10px,3vw,16px) 0" }} />
+                <div style={{ display: "flex", flexDirection: "column", gap: "clamp(6px,2vw,10px)" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                     <svg width="18" height="14" viewBox="0 0 24 18" fill="none"><rect x="0.5" y="0.5" width="23" height="17" rx="5" fill="#FF0000" /><path d="M10 5.5l7 3.5-7 3.5v-7z" fill="#fff" /></svg>
-                    <span style={{ fontSize: 17, fontWeight: 600, color: "#fff" }}>174K</span>
+                    <span style={{ fontSize: "clamp(14px,3.6vw,17px)", fontWeight: 600, color: "#fff" }}>174K</span>
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
@@ -540,14 +540,14 @@ function Bio() {
                       <circle cx="12" cy="12" r="4" stroke="url(#igGrad)" strokeWidth="1.8" />
                       <circle cx="17.3" cy="6.7" r="1" fill="#FF543E" />
                     </svg>
-                    <span style={{ fontSize: 17, fontWeight: 600, color: "#fff" }}>180K</span>
+                    <span style={{ fontSize: "clamp(14px,3.6vw,17px)", fontWeight: 600, color: "#fff" }}>180K</span>
                   </div>
                 </div>
               </motion.div>
             </div>
           </Reveal>
         </div>
-        <div className="lg:col-span-7" style={{ padding: "140px 24px 64px" }}>
+        <div className="lg:col-span-7 order-1 lg:order-2" style={{ padding: "140px 24px 64px" }}>
           <div style={{ maxWidth: 640 }}>
             <Reveal><Eyebrow>Théo Leguerrier</Eyebrow></Reveal>
             <Reveal delay={80}>
@@ -577,7 +577,7 @@ function Bio() {
 
 function FullPhotoStatementB() {
   return (
-    <section style={{ background: "#EBEBEA", padding: "140px 24px 120px" }}>
+    <section style={{ background: "#EBEBEA", padding: "clamp(72px,20vw,140px) 24px 120px" }}>
       <Reveal y={40}>
         <div style={{
           maxWidth: 1320, margin: "0 auto", borderRadius: 48, overflow: "hidden", position: "relative",
@@ -868,7 +868,7 @@ function Content() {
           </div>
         </Reveal>
         <Reveal delay={80} y={0} x={80}>
-          <div className="h-[245px] md:h-[522px]" style={{ overflow: "hidden", position: "relative" }}>
+          <div style={{ height: "clamp(245px, 60vw, 522px)", overflow: "hidden", position: "relative" }}>
             <img src={memberMockup} alt="Aperçu de l'espace membre Objectif Masse®" loading="lazy"
               style={{ display: "block", width: "100%", maxWidth: 1040, margin: "0 auto", height: "auto" }} />
           </div>
