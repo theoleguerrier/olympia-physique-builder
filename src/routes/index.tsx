@@ -144,7 +144,7 @@ function Nav() {
         border: "1px solid rgba(255,255,255,0.1)", borderRadius: 999,
         padding: "10px 20px", transition: "background 0.3s ease",
       }}>
-        <Logo size={18} />
+        <Logo3D size={18} />
         <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 12, letterSpacing: "0.22em", color: "#FFFFFF" }}>
           OBJECTIF MASSE®
         </div>
@@ -167,6 +167,7 @@ function Nav() {
 function Hero() {
   const reduceMotion = useReducedMotion();
   const isMobile = useIsMobile();
+  const [landed, setLanded] = useState(false);
   return (
     <section style={{ position: "relative", minHeight: "100vh", overflow: "hidden", background: "#0A0A0A" }}>
       {/* Photo plein cadre */}
@@ -193,8 +194,9 @@ function Hero() {
           alt=""
           aria-hidden
           initial={reduceMotion ? false : { opacity: 0, rotateY: -720, scale: 0.3 }}
-          animate={{ opacity: 1, rotateY: 0, scale: 1 }}
-          transition={reduceMotion ? { duration: 0 } : { duration: 1.6, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+          animate={reduceMotion ? { opacity: 1, rotateY: 0, scale: 1 } : landed ? { opacity: 1, rotateY: [-18, 18, -18], scale: 1 } : { opacity: 1, rotateY: 0, scale: 1 }}
+          transition={reduceMotion ? { duration: 0 } : landed ? { duration: 6, ease: "easeInOut", repeat: Infinity } : { duration: 1.6, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+          onAnimationComplete={() => { if (!reduceMotion && !landed) setLanded(true); }}
           style={{ width: 64, height: 64, display: "block", filter: "drop-shadow(0 8px 24px rgba(0,0,0,0.5))" }}
         />
       </div>
@@ -242,7 +244,7 @@ function Marquee() {
     <div style={{ display: "flex", gap: 40, paddingRight: 40, flexShrink: 0 }}>
       {items.map((t, i) => (
         <span key={i} style={{ display: "flex", gap: 40, alignItems: "center", fontSize: 13, fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.65)" }}>
-          {t}<Logo size={14} color={ACCENT} />
+          {t}<Logo3D size={14} />
         </span>
       ))}
     </div>
@@ -414,6 +416,22 @@ function Logo({ size = 22, color = "#fff", chrome = false }: { size?: number; co
       </defs>
       <path d={path} fill={`url(#${gid})`} stroke="#1c1f24" strokeWidth="1.5" strokeLinejoin="round" />
     </svg>
+  );
+}
+
+function Logo3D({ size = 18 }: { size?: number }) {
+  const reduceMotion = useReducedMotion();
+  return (
+    <div style={{ perspective: 300, display: "inline-block" }}>
+      <motion.img
+        src={logoM}
+        alt=""
+        aria-hidden
+        animate={reduceMotion ? { rotateY: 0 } : { rotateY: [-18, 18, -18] }}
+        transition={reduceMotion ? undefined : { duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        style={{ width: size, height: size, display: "block", filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.55))" }}
+      />
+    </div>
   );
 }
 
