@@ -175,7 +175,7 @@ function Hero() {
   const reduceMotion = useReducedMotion();
   const isMobile = useIsMobile();
   return (
-    <section style={{ position: "relative", minHeight: "100vh", overflow: "hidden", background: "#0A0A0A" }}>
+    <section style={{ position: "relative", minHeight: isMobile ? "86vh" : "100vh", overflow: "hidden", background: "#0A0A0A" }}>
       {/* Photo plein cadre */}
       <div style={{
         position: "absolute", inset: 0, backgroundImage: `url(${heroTheo})`,
@@ -206,7 +206,7 @@ function Hero() {
         />
       </div>
 
-      <div style={{ position: "relative", zIndex: 2, minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", padding: "120px clamp(24px,5vw,72px) 60px" }}>
+      <div style={{ position: "relative", zIndex: 2, minHeight: isMobile ? "86vh" : "100vh", display: "flex", flexDirection: "column", justifyContent: "center", padding: isMobile ? "120px clamp(24px,5vw,72px) 40px" : "120px clamp(24px,5vw,72px) 60px" }}>
         <div style={{ maxWidth: 680 }}>
           <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(64px,10vw,168px)", lineHeight: 0.86, margin: 0, color: "#fff", transform: isMobile ? "translateY(-38px)" : "none" }}>
             <div><WordSplit text="Objectif" delayBase={0.15} /></div>
