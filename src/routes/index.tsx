@@ -165,6 +165,7 @@ function Nav() {
 /* ---------- Hero ---------- */
 function Hero() {
   const reduceMotion = useReducedMotion();
+  const isMobile = useIsMobile();
   return (
     <section style={{ position: "relative", minHeight: "100vh", overflow: "hidden", background: "#0A0A0A" }}>
       {/* Photo plein cadre */}
@@ -184,7 +185,7 @@ function Hero() {
             "radial-gradient(ellipse 45% 60% at 12% 70%, rgba(9,85,145,0.18), transparent 60%)",
         }} />
 
-      <div style={{ position: "relative", zIndex: 2, minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", padding: "120px clamp(24px,5vw,72px) 60px" }}>
+      <div style={{ position: "relative", zIndex: 2, minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: isMobile ? "flex-start" : "center", padding: isMobile ? "110px clamp(24px,5vw,72px) 60px" : "120px clamp(24px,5vw,72px) 60px" }}>
         <div style={{ maxWidth: 680 }}>
           <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(64px,10vw,168px)", lineHeight: 0.86, margin: 0, color: "#fff" }}>
             <div><WordSplit text="Objectif" delayBase={0.15} /></div>
@@ -267,7 +268,7 @@ function BenefitMarquee({ items, scroll = true }: { items: [string, string][]; s
       maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
       WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
     }}>
-      <motion.div style={{ display: "flex" }} animate={reduceMotion ? {} : { x: ["0%", "-50%"] }} transition={reduceMotion ? undefined : { duration: isMobile ? 9 : 20, ease: "linear", repeat: Infinity }}>
+      <motion.div style={{ display: "flex" }} animate={reduceMotion ? {} : { x: ["0%", "-50%"] }} transition={reduceMotion ? undefined : { duration: isMobile ? 5 : 20, ease: "linear", repeat: Infinity }}>
         {pill}{pill}
       </motion.div>
     </div>
@@ -435,6 +436,7 @@ function ProfileCard({ n, t, b, level }: { n: string; t: string; b: string[]; le
 }
 
 function Problem() {
+  const isMobile = useIsMobile();
   const cards = [
     { n: "01", t: "Tu débutes en musculation", level: "Débutant", b: [
       "Full body, PPL, surcharge progressive… Tu te perds dans tous ces termes. Entre les influenceurs que tu suis et ce que tu trouves sur YouTube, tout se contredit. Et difficile de savoir par où commencer.",
@@ -455,7 +457,7 @@ function Problem() {
   return (
     <section style={{ background: "#0A0A0A", position: "relative", overflow: "hidden", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
       <div className="grid grid-cols-1 lg:grid-cols-12" style={{ alignItems: "stretch" }}>
-        <div className="lg:col-span-6" style={{ paddingTop: 140, paddingBottom: 64, paddingRight: 16, paddingLeft: "clamp(24px, 6vw, 88px)" }}>
+        <div className="lg:col-span-6" style={{ paddingTop: isMobile ? 100 : 140, paddingBottom: 64, paddingRight: 16, paddingLeft: "clamp(24px, 6vw, 88px)" }}>
           <div style={{ maxWidth: 740, margin: "0 auto" }}>
             <Reveal><Eyebrow>Le constat</Eyebrow></Reveal>
             <ScrollHeading text={"Tu t'entraînes depuis des mois,\nvoire des années.\nPourtant, ton physique\nn'est toujours pas à la hauteur\nde tes ambitions ?"} style={{ ...heavy, fontSize: "clamp(28px,3.3vw,40px)", lineHeight: 1.2, color: "#fff", margin: 0 }} />
@@ -512,6 +514,7 @@ function Problem() {
 
 function Bio() {
   const reduceMotion = useReducedMotion();
+  const isMobile = useIsMobile();
   return (
     <section style={{ background: "#0A0A0A", position: "relative", overflow: "hidden", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
       <div className="grid grid-cols-1 lg:grid-cols-12" style={{ alignItems: "stretch" }}>
@@ -560,7 +563,7 @@ function Bio() {
             </div>
           </Reveal>
         </div>
-        <div className="lg:col-span-7 order-1 lg:order-2" style={{ padding: "140px 24px 64px" }}>
+        <div className="lg:col-span-7 order-1 lg:order-2" style={{ padding: isMobile ? "100px 24px 64px" : "140px 24px 64px" }}>
           <div style={{ maxWidth: 640 }}>
             <Reveal><Eyebrow>Théo Leguerrier</Eyebrow></Reveal>
             <Reveal delay={80}>
@@ -681,6 +684,7 @@ function PhaseCard({ n, title, weeks, body, photo, delay, photoPosition = "cente
 }
 
 function Phases() {
+  const isMobile = useIsMobile();
   const items = [
     { n: "01", title: "Les Fondations", weeks: "Semaines 1 à 3", photo: theoPool,
       body: [
@@ -713,7 +717,7 @@ function Phases() {
   ];
   return (
     <section style={{ background: "#0F0F0F", position: "relative", overflow: "hidden", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
-      <div style={{ maxWidth: 1240, margin: "0 auto", padding: "140px 24px 64px", position: "relative" }}>
+      <div style={{ maxWidth: 1240, margin: "0 auto", padding: isMobile ? "100px 24px 64px" : "140px 24px 64px", position: "relative" }}>
         <Reveal><Eyebrow>La structure</Eyebrow></Reveal>
         <ScrollHeading text="Les 4 phases qui bâtiront ton meilleur physique" style={{ ...heavy, fontSize: "clamp(36px,4.5vw,60px)", lineHeight: 1.1, color: "#fff", margin: 0, maxWidth: 800 }} />
         <Reveal delay={160}>
@@ -839,7 +843,7 @@ function Content() {
   ];
   return (
     <>
-      <section style={{ background: "#0A0A0A", padding: "140px 24px 64px", position: "relative", overflow: "hidden" , borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+      <section style={{ background: "#0A0A0A", padding: isMobile ? "100px 24px 64px" : "140px 24px 64px", position: "relative", overflow: "hidden" , borderTop: "1px solid rgba(255,255,255,0.1)" }}>
         <div style={{ maxWidth: 1240, margin: "0 auto", position: "relative" }}>
           <Reveal><Eyebrow>Ce que tu reçois</Eyebrow></Reveal>
           <ScrollHeading text="Tout ce que tu reçois dans Objectif Masse®." style={{ ...heavy, fontSize: "clamp(36px,4.5vw,60px)", lineHeight: 1.1, color: "#fff", margin: 0 }} />
@@ -894,6 +898,7 @@ function Content() {
 
 function AvantApres() {
   const [hoverCard, setHoverCard] = useState<"avant" | "apres" | null>(null);
+  const isMobile = useIsMobile();
   const avant = [
     "Tu improvises tes séances en arrivant à la salle",
     "Tu ne progresses plus : mêmes charges, mêmes répétitions depuis des mois",
@@ -911,7 +916,7 @@ function AvantApres() {
     "Le meilleur physique de ta vie : massif, fort et volumineux",
   ];
   return (
-    <section style={{ background: "#0A0A0A", padding: "140px 24px 64px" , borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+    <section style={{ background: "#0A0A0A", padding: isMobile ? "100px 24px 64px" : "140px 24px 64px" , borderTop: "1px solid rgba(255,255,255,0.1)" }}>
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <Reveal>
           <h2 style={{ ...heavy, fontSize: "clamp(36px,4.5vw,60px)", lineHeight: 1.1, color: "#fff", margin: "0 0 64px", textAlign: "center" }}>Avant &amp; après les 12 semaines</h2>
@@ -977,6 +982,7 @@ function AvantApres() {
 
 function ForWhom() {
   const [hoverCol, setHoverCol] = useState<"yes" | "no" | null>(null);
+  const isMobile = useIsMobile();
   const yes = [
     "Tu en as marre de t'entraîner sans savoir si tu progresses vraiment.",
     "Tu veux enfin suivre un plan construit du premier jour au dernier.",
@@ -992,7 +998,7 @@ function ForWhom() {
   ];
   return (
     <section style={{ background: "#0A0A0A", position: "relative", overflow: "hidden", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
-      <div style={{ textAlign: "center", padding: "140px 24px 0" }}>
+      <div style={{ textAlign: "center", padding: isMobile ? "100px 24px 0" : "140px 24px 0" }}>
         <Reveal><Eyebrow>Pour qui ?</Eyebrow></Reveal>
         <ScrollHeading text="Est-ce que Objectif Masse® est fait pour toi ?" style={{ ...heavy, fontSize: "clamp(36px,4.5vw,60px)", lineHeight: 1.1, color: "#fff", margin: 0 }} />
       </div>
@@ -1072,6 +1078,7 @@ function ForWhom() {
 }
 
 function Pricing() {
+  const isMobile = useIsMobile();
   const items = [
     "Guide 1 — Les Fondations",
     "Bonus 1 — Mes compléments alimentaire",
@@ -1084,7 +1091,7 @@ function Pricing() {
     "50 vidéos d'exercices avec leurs alternatives",
   ];
   return (
-    <section id="pricing" style={{ background: "#0A0A0A", padding: "140px 24px 64px", position: "relative", overflow: "hidden" , borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+    <section id="pricing" style={{ background: "#0A0A0A", padding: isMobile ? "100px 24px 64px" : "140px 24px 64px", position: "relative", overflow: "hidden" , borderTop: "1px solid rgba(255,255,255,0.1)" }}>
       <div style={{ position: "relative", textAlign: "center" }}>
         <Eyebrow>L'investissement</Eyebrow>
         <ScrollHeading text="Rejoindre Objectif Masse®" style={{ ...heavy, fontSize: "clamp(36px,4.5vw,60px)", lineHeight: 1.1, color: "#fff", margin: 0 }} />
@@ -1156,8 +1163,9 @@ function FAQ() {
   ];
   const [open, setOpen] = useState<number | null>(0);
   const [hovered, setHovered] = useState<number | null>(null);
+  const isMobile = useIsMobile();
   return (
-    <section style={{ background: "#EBEBEA", padding: "140px 24px 64px" , borderTop: "1px solid rgba(28,28,28,0.08)" }}>
+    <section style={{ background: "#EBEBEA", padding: isMobile ? "100px 24px 64px" : "140px 24px 64px" , borderTop: "1px solid rgba(28,28,28,0.08)" }}>
       <div style={{ textAlign: "center", marginBottom: 48 }}>
         <div style={{ fontSize: 10, letterSpacing: "0.35em", textTransform: "uppercase", color: ACCENT, marginBottom: 20 }}>Questions fréquentes</div>
         <h2 style={{ ...bebas, fontSize: "clamp(56px,7vw,96px)", lineHeight: 1, color: "#1C1C1C", margin: 0 }}>FAQ</h2>
