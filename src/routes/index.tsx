@@ -188,7 +188,7 @@ function Hero() {
         }} />
 
       {/* Logo tornade — entrée test */}
-      <div style={{ position: "absolute", top: 28, left: "50%", marginLeft: -32, zIndex: 6, perspective: 800 }}>
+      <div style={{ position: "absolute", top: 28, left: "50%", marginLeft: -24, zIndex: 6, perspective: 800 }}>
         <motion.img
           src={logoM}
           alt=""
@@ -197,7 +197,7 @@ function Hero() {
           animate={reduceMotion ? { opacity: 1, rotateY: 0, scale: 1 } : landed ? { opacity: 1, rotateY: [-18, 18, -18], scale: 1 } : { opacity: 1, rotateY: 0, scale: 1 }}
           transition={reduceMotion ? { duration: 0 } : landed ? { duration: 6, ease: "easeInOut", repeat: Infinity } : { duration: 1.6, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
           onAnimationComplete={() => { if (!reduceMotion && !landed) setLanded(true); }}
-          style={{ width: 64, height: "auto", display: "block" }}
+          style={{ width: 48, height: "auto", display: "block" }}
         />
       </div>
 
