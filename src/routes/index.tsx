@@ -185,6 +185,17 @@ function Hero() {
             "radial-gradient(ellipse 45% 60% at 12% 70%, rgba(9,85,145,0.18), transparent 60%)",
         }} />
 
+      {/* Logo tornade — entrée test */}
+      <motion.div
+        aria-hidden
+        initial={reduceMotion ? false : { opacity: 0, rotate: -540, scale: 0.15, y: -30 }}
+        animate={{ opacity: 1, rotate: 0, scale: 1, y: 0 }}
+        transition={reduceMotion ? { duration: 0 } : { duration: 1.6, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+        style={{ position: "absolute", top: 28, left: "50%", marginLeft: -32, zIndex: 6, filter: "drop-shadow(0 8px 24px rgba(0,0,0,0.5))" }}
+      >
+        <Logo size={64} chrome />
+      </motion.div>
+
       <div style={{ position: "relative", zIndex: 2, minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", padding: "120px clamp(24px,5vw,72px) 60px" }}>
         <div style={{ maxWidth: 680 }}>
           <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(64px,10vw,168px)", lineHeight: 0.86, margin: 0, color: "#fff", transform: isMobile ? "translateY(-38px)" : "none" }}>
@@ -235,7 +246,7 @@ function Marquee() {
   );
   return (
     <div style={{ background: "#0A0A0A", height: 48, overflow: "hidden", display: "flex", alignItems: "center" }}>
-      <motion.div style={{ display: "flex" }} animate={reduceMotion ? {} : { x: ["0%", "-50%"] }} transition={reduceMotion ? undefined : { duration: 22, ease: "linear", repeat: Infinity }}>
+      <motion.div style={{ display: "flex", width: "max-content" }} animate={reduceMotion ? {} : { x: ["0%", "-50%"] }} transition={reduceMotion ? undefined : { duration: 22, ease: "linear", repeat: Infinity }}>
         {row}{row}{row}{row}
       </motion.div>
     </div>
@@ -268,7 +279,7 @@ function BenefitMarquee({ items, scroll = true }: { items: [string, string][]; s
       maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
       WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
     }}>
-      <motion.div style={{ display: "flex" }} animate={reduceMotion ? {} : { x: ["0%", "-50%"] }} transition={reduceMotion ? undefined : { duration: isMobile ? 3 : 20, ease: "linear", repeat: Infinity }}>
+      <motion.div key={isMobile ? "mobile" : "desktop"} style={{ display: "flex", width: "max-content" }} animate={reduceMotion ? {} : { x: ["0%", "-50%"] }} transition={reduceMotion ? undefined : { duration: isMobile ? 2 : 20, ease: "linear", repeat: Infinity }}>
         {pill}{pill}
       </motion.div>
     </div>
@@ -374,10 +385,31 @@ function ScrollHeading({ text, as = "h2", style, className }: { text: string; as
   );
 }
 
-function Logo({ size = 22, color = "#fff" }: { size?: number; color?: string }) {
+function Logo({ size = 22, color = "#fff", chrome = false }: { size?: number; color?: string; chrome?: boolean }) {
+  const path = "M10 105 V25 L20 15 H30 L60 65 L90 15 H100 L110 25 V105 H92 V50 L65 95 H55 L28 50 V105 Z";
+  if (!chrome) {
+    return (
+      <svg width={size} height={size} viewBox="0 0 120 120" fill="none" aria-hidden>
+        <path d={path} fill={color} />
+      </svg>
+    );
+  }
+  const gid = "logoChrome";
   return (
     <svg width={size} height={size} viewBox="0 0 120 120" fill="none" aria-hidden>
-      <path d="M10 105 V25 L20 15 H30 L60 65 L90 15 H100 L110 25 V105 H92 V50 L65 95 H55 L28 50 V105 Z" fill={color} />
+      <defs>
+        <linearGradient id={gid} x1="10%" y1="0%" x2="90%" y2="100%">
+          <stop offset="0%" stopColor="#f5f7fa" />
+          <stop offset="18%" stopColor="#9aa5b1" />
+          <stop offset="32%" stopColor="#e8ecef" />
+          <stop offset="48%" stopColor="#5c6773" />
+          <stop offset="60%" stopColor="#c9ced4" />
+          <stop offset="75%" stopColor="#3a4149" />
+          <stop offset="88%" stopColor="#dde1e5" />
+          <stop offset="100%" stopColor="#7a828c" />
+        </linearGradient>
+      </defs>
+      <path d={path} fill={`url(#${gid})`} stroke="#1c1f24" strokeWidth="1.5" strokeLinejoin="round" />
     </svg>
   );
 }
