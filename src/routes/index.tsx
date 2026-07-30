@@ -193,9 +193,14 @@ function Hero() {
           src={logoM}
           alt=""
           aria-hidden
-          initial={reduceMotion ? false : { opacity: 0, rotateY: -1080, scale: 0.3 }}
-          animate={reduceMotion ? { opacity: 1, rotateY: 0, scale: 1 } : landed ? { opacity: 1, rotateY: [-18, 18, -18], scale: 1 } : { opacity: 1, rotateY: 0, scale: 1 }}
-          transition={reduceMotion ? { duration: 0 } : landed ? { duration: 6, ease: "easeInOut", repeat: Infinity } : { duration: 2, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+          initial={reduceMotion ? false : { opacity: 0, rotateY: -720, scale: 0.3 }}
+          animate={reduceMotion ? { opacity: 1, rotateY: 0, scale: 1 } : landed ? { opacity: 1, rotateY: [18, -18, 18], scale: 1 } : { opacity: 1, rotateY: 0, scale: 1 }}
+          transition={reduceMotion ? { duration: 0 } : landed ? { duration: 6, ease: "easeInOut", repeat: Infinity } : {
+            delay: 0.15,
+            rotateY: { type: "spring", stiffness: 40, damping: 13, mass: 1 },
+            opacity: { duration: 0.7 },
+            scale: { duration: 1.1, ease: [0.16, 1, 0.3, 1] },
+          }}
           onAnimationComplete={() => { if (!reduceMotion && !landed) setLanded(true); }}
           style={{ width: 48, height: "auto", display: "block" }}
         />
