@@ -8,6 +8,7 @@ import phase2Photo from "@/assets/phase-2.jpg";
 import phase3Photo from "@/assets/phase-3.jpg";
 import phase4Photo from "@/assets/phase-4.jpg";
 import coverOm from "@/assets/cover-om.jpg";
+import logoM from "@/assets/logo-m.png";
 import coverFond from "@/assets/cover-fondations.jpg";
 import coverProg from "@/assets/cover-programme.jpg";
 import coverDiete from "@/assets/cover-diete.jpg";
@@ -186,15 +187,17 @@ function Hero() {
         }} />
 
       {/* Logo tornade — entrée test */}
-      <motion.div
-        aria-hidden
-        initial={reduceMotion ? false : { opacity: 0, rotate: -540, scale: 0.15, y: -30 }}
-        animate={{ opacity: 1, rotate: 0, scale: 1, y: 0 }}
-        transition={reduceMotion ? { duration: 0 } : { duration: 1.6, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
-        style={{ position: "absolute", top: 28, left: "50%", marginLeft: -32, zIndex: 6, filter: "drop-shadow(0 8px 24px rgba(0,0,0,0.5))" }}
-      >
-        <Logo size={64} chrome />
-      </motion.div>
+      <div style={{ position: "absolute", top: 28, left: "50%", marginLeft: -32, zIndex: 6, perspective: 800 }}>
+        <motion.img
+          src={logoM}
+          alt=""
+          aria-hidden
+          initial={reduceMotion ? false : { opacity: 0, rotateY: -720, scale: 0.3 }}
+          animate={{ opacity: 1, rotateY: 0, scale: 1 }}
+          transition={reduceMotion ? { duration: 0 } : { duration: 1.6, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+          style={{ width: 64, height: 64, display: "block", filter: "drop-shadow(0 8px 24px rgba(0,0,0,0.5))" }}
+        />
+      </div>
 
       <div style={{ position: "relative", zIndex: 2, minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", padding: "120px clamp(24px,5vw,72px) 60px" }}>
         <div style={{ maxWidth: 680 }}>
@@ -279,7 +282,7 @@ function BenefitMarquee({ items, scroll = true }: { items: [string, string][]; s
       maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
       WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
     }}>
-      <motion.div key={isMobile ? "mobile" : "desktop"} style={{ display: "flex", width: "max-content" }} animate={reduceMotion ? {} : { x: ["0%", "-50%"] }} transition={reduceMotion ? undefined : { duration: isMobile ? 2 : 20, ease: "linear", repeat: Infinity }}>
+      <motion.div key={isMobile ? "mobile" : "desktop"} style={{ display: "flex", width: "max-content" }} animate={reduceMotion ? {} : { x: ["0%", "-50%"] }} transition={reduceMotion ? undefined : { duration: isMobile ? 5 : 20, ease: "linear", repeat: Infinity }}>
         {pill}{pill}
       </motion.div>
     </div>
