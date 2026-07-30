@@ -289,7 +289,7 @@ function BenefitMarquee({ items, scroll = true }: { items: [string, string][]; s
       maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
       WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
     }}>
-      <motion.div key={isMobile ? "mobile" : "desktop"} style={{ display: "flex", width: "max-content" }} animate={reduceMotion ? {} : { x: ["0%", "-50%"] }} transition={reduceMotion ? undefined : { duration: isMobile ? 5 : 60, ease: "linear", repeat: Infinity }}>
+      <motion.div key={isMobile ? "mobile" : "desktop"} style={{ display: "flex", width: "max-content" }} animate={reduceMotion ? {} : { x: ["0%", "-50%"] }} transition={reduceMotion ? undefined : { duration: isMobile ? 30 : 60, ease: "linear", repeat: Infinity }}>
         {pill}{pill}
       </motion.div>
     </div>
