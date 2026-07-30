@@ -126,8 +126,12 @@ function GrainOverlay() {
 /* ---------- Nav ---------- */
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [showBrand, setShowBrand] = useState(false);
   useEffect(() => {
-    const on = () => setScrolled(window.scrollY > 60);
+    const on = () => {
+      setScrolled(window.scrollY > 60);
+      setShowBrand(window.scrollY > window.innerHeight * 0.7);
+    };
     on(); window.addEventListener("scroll", on, { passive: true });
     return () => window.removeEventListener("scroll", on);
   }, []);
@@ -142,7 +146,10 @@ function Nav() {
         background: scrolled ? "rgba(10,10,10,0.55)" : "rgba(10,10,10,0.25)",
         backdropFilter: "blur(18px)", WebkitBackdropFilter: "blur(18px)",
         border: "1px solid rgba(255,255,255,0.1)", borderRadius: 999,
-        padding: "10px 20px", transition: "background 0.3s ease",
+        padding: "10px 20px",
+        opacity: showBrand ? 1 : 0, transform: showBrand ? "translateY(0)" : "translateY(-8px)",
+        pointerEvents: showBrand ? "auto" : "none",
+        transition: "background 0.3s ease, opacity 0.4s ease, transform 0.4s ease",
       }}>
         <Logo3D size={18} />
         <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 12, letterSpacing: "0.22em", color: "#FFFFFF" }}>
