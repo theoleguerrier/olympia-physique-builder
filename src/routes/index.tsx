@@ -194,10 +194,10 @@ function Hero() {
           alt=""
           aria-hidden
           initial={reduceMotion ? false : { opacity: 0, rotateY: -720, scale: 0.3 }}
-          animate={reduceMotion ? { opacity: 1, rotateY: 0, scale: 1 } : landed ? { opacity: 1, rotateY: [18, -18, 18], scale: 1 } : { opacity: 1, rotateY: 0, scale: 1 }}
+          animate={reduceMotion ? { opacity: 1, rotateY: 0, scale: 1 } : landed ? { opacity: 1, rotateY: [18, -18, 18], scale: 1 } : { opacity: 1, rotateY: [-720, 15, -5, 0], scale: 1 }}
           transition={reduceMotion ? { duration: 0 } : landed ? { duration: 6, ease: "easeInOut", repeat: Infinity } : {
             delay: 0.15,
-            rotateY: { type: "spring", stiffness: 40, damping: 13, mass: 1 },
+            rotateY: { duration: 2, times: [0, 0.72, 0.88, 1], ease: ["easeInOut", "easeOut", "easeOut"] },
             opacity: { duration: 0.7 },
             scale: { duration: 1.1, ease: [0.16, 1, 0.3, 1] },
           }}
