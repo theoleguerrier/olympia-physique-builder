@@ -44,6 +44,18 @@ const ACCENT = "#095591";
 
 /* ---------- Utilities ---------- */
 
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return isMobile;
+}
+
 function Reveal({ children, delay = 0, y = 20, x = 0, className }: { children: ReactNode; delay?: number; y?: number; x?: number; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, amount: 0.06 });
@@ -231,6 +243,7 @@ function Marquee() {
 
 function BenefitMarquee({ items, scroll = true }: { items: [string, string][]; scroll?: boolean }) {
   const reduceMotion = useReducedMotion();
+  const isMobile = useIsMobile();
   const pill = (
     <div style={{ display: "flex", flexWrap: scroll ? "nowrap" : "wrap", gap: 12, paddingRight: scroll ? 10 : 0, flexShrink: scroll ? 0 : undefined }}>
       {items.map(([emoji, t], i) => (
@@ -254,7 +267,7 @@ function BenefitMarquee({ items, scroll = true }: { items: [string, string][]; s
       maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
       WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
     }}>
-      <motion.div style={{ display: "flex" }} animate={reduceMotion ? {} : { x: ["0%", "-50%"] }} transition={reduceMotion ? undefined : { duration: 20, ease: "linear", repeat: Infinity }}>
+      <motion.div style={{ display: "flex" }} animate={reduceMotion ? {} : { x: ["0%", "-50%"] }} transition={reduceMotion ? undefined : { duration: isMobile ? 9 : 20, ease: "linear", repeat: Infinity }}>
         {pill}{pill}
       </motion.div>
     </div>
@@ -773,6 +786,7 @@ function ContentCard({ badge, title, subtitle, img, intro, body, index, accent }
 }
 
 function Content() {
+  const isMobile = useIsMobile();
   const guideCards = [
     { badge: "GUIDE 1", title: "Les Fondations", subtitle: "Vidéo thématique + Guide", img: coverFond,
       intro: "La méthode derrière le programme. Celle que tu appliqueras pendant 12 semaines, puis toute ta vie.",
@@ -868,7 +882,7 @@ function Content() {
           </div>
         </Reveal>
         <Reveal delay={80} y={0} x={80}>
-          <div style={{ height: "clamp(245px, 60vw, 522px)", overflow: "hidden", position: "relative" }}>
+          <div style={{ height: isMobile ? 207 : "clamp(245px, 60vw, 522px)", overflow: "hidden", position: "relative" }}>
             <img src={memberMockup} alt="Aperçu de l'espace membre Objectif Masse®" loading="lazy"
               style={{ display: "block", width: "100%", maxWidth: 1040, margin: "0 auto", height: "auto" }} />
           </div>
