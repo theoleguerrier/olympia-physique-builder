@@ -185,9 +185,9 @@ function Hero() {
             "radial-gradient(ellipse 45% 60% at 12% 70%, rgba(9,85,145,0.18), transparent 60%)",
         }} />
 
-      <div style={{ position: "relative", zIndex: 2, minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: isMobile ? "flex-start" : "center", padding: isMobile ? "110px clamp(24px,5vw,72px) 60px" : "120px clamp(24px,5vw,72px) 60px" }}>
+      <div style={{ position: "relative", zIndex: 2, minHeight: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", padding: "120px clamp(24px,5vw,72px) 60px" }}>
         <div style={{ maxWidth: 680 }}>
-          <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(64px,10vw,168px)", lineHeight: 0.86, margin: 0, color: "#fff" }}>
+          <h1 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: "clamp(64px,10vw,168px)", lineHeight: 0.86, margin: 0, color: "#fff", transform: isMobile ? "translateY(-38px)" : "none" }}>
             <div><WordSplit text="Objectif" delayBase={0.15} /></div>
             <div>
               <span style={{ color: ACCENT }}>
@@ -268,7 +268,7 @@ function BenefitMarquee({ items, scroll = true }: { items: [string, string][]; s
       maskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
       WebkitMaskImage: "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
     }}>
-      <motion.div style={{ display: "flex" }} animate={reduceMotion ? {} : { x: ["0%", "-50%"] }} transition={reduceMotion ? undefined : { duration: isMobile ? 5 : 20, ease: "linear", repeat: Infinity }}>
+      <motion.div style={{ display: "flex" }} animate={reduceMotion ? {} : { x: ["0%", "-50%"] }} transition={reduceMotion ? undefined : { duration: isMobile ? 3 : 20, ease: "linear", repeat: Infinity }}>
         {pill}{pill}
       </motion.div>
     </div>
