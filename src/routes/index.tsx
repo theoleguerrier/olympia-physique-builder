@@ -197,7 +197,7 @@ function Hero() {
           animate={reduceMotion ? { opacity: 1, rotateY: 0, scale: 1 } : landed ? { opacity: 1, rotateY: [-18, 18, -18], scale: 1 } : { opacity: 1, rotateY: 0, scale: 1 }}
           transition={reduceMotion ? { duration: 0 } : landed ? { duration: 6, ease: "easeInOut", repeat: Infinity } : { duration: 1.6, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
           onAnimationComplete={() => { if (!reduceMotion && !landed) setLanded(true); }}
-          style={{ width: 64, height: 64, display: "block", filter: "drop-shadow(0 8px 24px rgba(0,0,0,0.5))" }}
+          style={{ width: 64, height: "auto", display: "block" }}
         />
       </div>
 
@@ -429,7 +429,7 @@ function Logo3D({ size = 18 }: { size?: number }) {
         aria-hidden
         animate={reduceMotion ? { rotateY: 0 } : { rotateY: [-18, 18, -18] }}
         transition={reduceMotion ? undefined : { duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        style={{ width: size, height: size, display: "block", filter: "drop-shadow(0 2px 6px rgba(0,0,0,0.55))" }}
+        style={{ width: size, height: "auto", display: "block" }}
       />
     </div>
   );
