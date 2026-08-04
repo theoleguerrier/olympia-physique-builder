@@ -216,10 +216,10 @@ function Hero() {
               </span>
             </div>
           </h1>
-          <p style={{ ...heavy, fontSize: "clamp(20px,2.6vw,30px)", color: "rgba(255,255,255,0.85)", maxWidth: 560, marginTop: 32, lineHeight: 1.4, textWrap: "balance" } as React.CSSProperties}>
+          <p style={{ ...heavy, fontSize: "clamp(20px,2.6vw,30px)", color: "#fff", maxWidth: 640, marginTop: 32, lineHeight: 1.3, textWrap: "balance" } as React.CSSProperties}>
             12 semaines pour réussir ta prise de masse.
           </p>
-          <p style={{ ...serif, fontSize: "clamp(19px,2.2vw,27px)", color: "rgba(255,255,255,0.92)", marginTop: 12, lineHeight: 1.3, maxWidth: 560, textWrap: "balance" } as React.CSSProperties}>
+          <p style={{ ...serif, fontSize: "clamp(16px,1.6vw,20px)", color: "rgba(255,255,255,0.55)", marginTop: 14, lineHeight: 1.4, maxWidth: 560, textWrap: "balance" } as React.CSSProperties}>
             Un physique plus fort, plus sec, plus massif.
           </p>
           <div style={{ marginTop: 40, display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
