@@ -34,7 +34,7 @@ export const Route = createFileRoute("/")({
       { title: "Objectif Masse® — 12 semaines · Théo Leguerrier IFBB Pro" },
       { name: "description", content: "Le programme de prise de masse de Théo Leguerrier, IFBB Pro & Top 15 Mr. Olympia. 4 phases · 50+ vidéos · accès à vie · 99€." },
       { property: "og:title", content: "Objectif Masse® — Théo Leguerrier" },
-      { property: "og:description", content: "12 semaines pour atteindre ton meilleur physique. 99€ · accès à vie." },
+      { property: "og:description", content: "12 semaines pour réussir ta prise de masse. Un physique plus fort, plus sec, plus massif. 99€ · accès à vie." },
     ],
   }),
   component: Landing,
@@ -217,7 +217,10 @@ function Hero() {
             </div>
           </h1>
           <p style={{ ...heavy, fontSize: "clamp(20px,2.6vw,30px)", color: "rgba(255,255,255,0.85)", maxWidth: 560, marginTop: 32, lineHeight: 1.4, textWrap: "balance" } as React.CSSProperties}>
-            12 semaines pour prendre du muscle, gagner en force et construire un physique massif.
+            12 semaines pour réussir ta prise de masse.
+          </p>
+          <p style={{ ...serif, fontSize: "clamp(19px,2.2vw,27px)", color: "rgba(255,255,255,0.92)", marginTop: 12, lineHeight: 1.3, maxWidth: 560, textWrap: "balance" } as React.CSSProperties}>
+            Un physique plus fort, plus sec, plus massif.
           </p>
           <div style={{ marginTop: 40, display: "flex", alignItems: "center", gap: 14, flexWrap: "wrap" }}>
             <a href={CHECKOUT} style={{
